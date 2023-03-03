@@ -12,6 +12,13 @@ struct UTM_Snapshot_ManagerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onDisappear() {
+                    terminateApp()
+                }
         }
+    }
+    
+    private func terminateApp() {
+        NSApplication.shared.terminate(self)
     }
 }

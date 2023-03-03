@@ -1,0 +1,581 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3DBDAC2329B27B65009D0F73 /* UTM_Snapshot_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2229B27B65009D0F73 /* UTM_Snapshot_ManagerApp.swift */; };
+		3DBDAC2529B27B65009D0F73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2429B27B65009D0F73 /* ContentView.swift */; };
+		3DBDAC2729B27B66009D0F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2629B27B66009D0F73 /* Assets.xcassets */; };
+		3DBDAC2A29B27B66009D0F73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */; };
+		3DBDAC3529B27B66009D0F73 /* UTM_Snapshot_ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC3429B27B66009D0F73 /* UTM_Snapshot_ManagerTests.swift */; };
+		3DBDAC3F29B27B66009D0F73 /* UTM_Snapshot_ManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC3E29B27B66009D0F73 /* UTM_Snapshot_ManagerUITests.swift */; };
+		3DBDAC4129B27B66009D0F73 /* UTM_Snapshot_ManagerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC4029B27B66009D0F73 /* UTM_Snapshot_ManagerUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3DBDAC3129B27B66009D0F73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3DBDAC1729B27B65009D0F73 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DBDAC1E29B27B65009D0F73;
+			remoteInfo = "UTM Snapshot-Manager";
+		};
+		3DBDAC3B29B27B66009D0F73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3DBDAC1729B27B65009D0F73 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DBDAC1E29B27B65009D0F73;
+			remoteInfo = "UTM Snapshot-Manager";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3DBDAC1F29B27B65009D0F73 /* UTM Snapshot-Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UTM Snapshot-Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DBDAC2229B27B65009D0F73 /* UTM_Snapshot_ManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTM_Snapshot_ManagerApp.swift; sourceTree = "<group>"; };
+		3DBDAC2429B27B65009D0F73 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3DBDAC2629B27B66009D0F73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3DBDAC2B29B27B66009D0F73 /* UTM_Snapshot_Manager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTM_Snapshot_Manager.entitlements; sourceTree = "<group>"; };
+		3DBDAC3029B27B66009D0F73 /* UTM Snapshot-ManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UTM Snapshot-ManagerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DBDAC3429B27B66009D0F73 /* UTM_Snapshot_ManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTM_Snapshot_ManagerTests.swift; sourceTree = "<group>"; };
+		3DBDAC3A29B27B66009D0F73 /* UTM Snapshot-ManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UTM Snapshot-ManagerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DBDAC3E29B27B66009D0F73 /* UTM_Snapshot_ManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTM_Snapshot_ManagerUITests.swift; sourceTree = "<group>"; };
+		3DBDAC4029B27B66009D0F73 /* UTM_Snapshot_ManagerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTM_Snapshot_ManagerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3DBDAC1C29B27B65009D0F73 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DBDAC2D29B27B66009D0F73 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DBDAC3729B27B66009D0F73 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3DBDAC1629B27B65009D0F73 = {
+			isa = PBXGroup;
+			children = (
+				3DBDAC2129B27B65009D0F73 /* UTM Snapshot-Manager */,
+				3DBDAC3329B27B66009D0F73 /* UTM Snapshot-ManagerTests */,
+				3DBDAC3D29B27B66009D0F73 /* UTM Snapshot-ManagerUITests */,
+				3DBDAC2029B27B65009D0F73 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3DBDAC2029B27B65009D0F73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3DBDAC1F29B27B65009D0F73 /* UTM Snapshot-Manager.app */,
+				3DBDAC3029B27B66009D0F73 /* UTM Snapshot-ManagerTests.xctest */,
+				3DBDAC3A29B27B66009D0F73 /* UTM Snapshot-ManagerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3DBDAC2129B27B65009D0F73 /* UTM Snapshot-Manager */ = {
+			isa = PBXGroup;
+			children = (
+				3DBDAC2229B27B65009D0F73 /* UTM_Snapshot_ManagerApp.swift */,
+				3DBDAC2429B27B65009D0F73 /* ContentView.swift */,
+				3DBDAC2629B27B66009D0F73 /* Assets.xcassets */,
+				3DBDAC2B29B27B66009D0F73 /* UTM_Snapshot_Manager.entitlements */,
+				3DBDAC2829B27B66009D0F73 /* Preview Content */,
+			);
+			path = "UTM Snapshot-Manager";
+			sourceTree = "<group>";
+		};
+		3DBDAC2829B27B66009D0F73 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3DBDAC3329B27B66009D0F73 /* UTM Snapshot-ManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				3DBDAC3429B27B66009D0F73 /* UTM_Snapshot_ManagerTests.swift */,
+			);
+			path = "UTM Snapshot-ManagerTests";
+			sourceTree = "<group>";
+		};
+		3DBDAC3D29B27B66009D0F73 /* UTM Snapshot-ManagerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3DBDAC3E29B27B66009D0F73 /* UTM_Snapshot_ManagerUITests.swift */,
+				3DBDAC4029B27B66009D0F73 /* UTM_Snapshot_ManagerUITestsLaunchTests.swift */,
+			);
+			path = "UTM Snapshot-ManagerUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3DBDAC1E29B27B65009D0F73 /* UTM Snapshot-Manager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DBDAC4429B27B66009D0F73 /* Build configuration list for PBXNativeTarget "UTM Snapshot-Manager" */;
+			buildPhases = (
+				3DBDAC1B29B27B65009D0F73 /* Sources */,
+				3DBDAC1C29B27B65009D0F73 /* Frameworks */,
+				3DBDAC1D29B27B65009D0F73 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UTM Snapshot-Manager";
+			productName = "UTM Snapshot-Manager";
+			productReference = 3DBDAC1F29B27B65009D0F73 /* UTM Snapshot-Manager.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3DBDAC2F29B27B66009D0F73 /* UTM Snapshot-ManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DBDAC4729B27B66009D0F73 /* Build configuration list for PBXNativeTarget "UTM Snapshot-ManagerTests" */;
+			buildPhases = (
+				3DBDAC2C29B27B66009D0F73 /* Sources */,
+				3DBDAC2D29B27B66009D0F73 /* Frameworks */,
+				3DBDAC2E29B27B66009D0F73 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3DBDAC3229B27B66009D0F73 /* PBXTargetDependency */,
+			);
+			name = "UTM Snapshot-ManagerTests";
+			productName = "UTM Snapshot-ManagerTests";
+			productReference = 3DBDAC3029B27B66009D0F73 /* UTM Snapshot-ManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3DBDAC3929B27B66009D0F73 /* UTM Snapshot-ManagerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DBDAC4A29B27B66009D0F73 /* Build configuration list for PBXNativeTarget "UTM Snapshot-ManagerUITests" */;
+			buildPhases = (
+				3DBDAC3629B27B66009D0F73 /* Sources */,
+				3DBDAC3729B27B66009D0F73 /* Frameworks */,
+				3DBDAC3829B27B66009D0F73 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3DBDAC3C29B27B66009D0F73 /* PBXTargetDependency */,
+			);
+			name = "UTM Snapshot-ManagerUITests";
+			productName = "UTM Snapshot-ManagerUITests";
+			productReference = 3DBDAC3A29B27B66009D0F73 /* UTM Snapshot-ManagerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3DBDAC1729B27B65009D0F73 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					3DBDAC1E29B27B65009D0F73 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					3DBDAC2F29B27B66009D0F73 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 3DBDAC1E29B27B65009D0F73;
+					};
+					3DBDAC3929B27B66009D0F73 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 3DBDAC1E29B27B65009D0F73;
+					};
+				};
+			};
+			buildConfigurationList = 3DBDAC1A29B27B65009D0F73 /* Build configuration list for PBXProject "UTM Snapshot-Manager" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3DBDAC1629B27B65009D0F73;
+			productRefGroup = 3DBDAC2029B27B65009D0F73 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3DBDAC1E29B27B65009D0F73 /* UTM Snapshot-Manager */,
+				3DBDAC2F29B27B66009D0F73 /* UTM Snapshot-ManagerTests */,
+				3DBDAC3929B27B66009D0F73 /* UTM Snapshot-ManagerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3DBDAC1D29B27B65009D0F73 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DBDAC2A29B27B66009D0F73 /* Preview Assets.xcassets in Resources */,
+				3DBDAC2729B27B66009D0F73 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DBDAC2E29B27B66009D0F73 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DBDAC3829B27B66009D0F73 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3DBDAC1B29B27B65009D0F73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DBDAC2529B27B65009D0F73 /* ContentView.swift in Sources */,
+				3DBDAC2329B27B65009D0F73 /* UTM_Snapshot_ManagerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DBDAC2C29B27B66009D0F73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DBDAC3529B27B66009D0F73 /* UTM_Snapshot_ManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DBDAC3629B27B66009D0F73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DBDAC3F29B27B66009D0F73 /* UTM_Snapshot_ManagerUITests.swift in Sources */,
+				3DBDAC4129B27B66009D0F73 /* UTM_Snapshot_ManagerUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3DBDAC3229B27B66009D0F73 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DBDAC1E29B27B65009D0F73 /* UTM Snapshot-Manager */;
+			targetProxy = 3DBDAC3129B27B66009D0F73 /* PBXContainerItemProxy */;
+		};
+		3DBDAC3C29B27B66009D0F73 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DBDAC1E29B27B65009D0F73 /* UTM Snapshot-Manager */;
+			targetProxy = 3DBDAC3B29B27B66009D0F73 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3DBDAC4229B27B66009D0F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3DBDAC4329B27B66009D0F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		3DBDAC4529B27B66009D0F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "UTM Snapshot-Manager/UTM_Snapshot_Manager.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UTM Snapshot-Manager/Preview Content\"";
+				DEVELOPMENT_TEAM = 2C77986N3B;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jaymagnum.UTM-Snapshot-Manager";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3DBDAC4629B27B66009D0F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "UTM Snapshot-Manager/UTM_Snapshot_Manager.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UTM Snapshot-Manager/Preview Content\"";
+				DEVELOPMENT_TEAM = 2C77986N3B;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jaymagnum.UTM-Snapshot-Manager";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		3DBDAC4829B27B66009D0F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2C77986N3B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jaymagnum.UTM-Snapshot-ManagerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UTM Snapshot-Manager.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UTM Snapshot-Manager";
+			};
+			name = Debug;
+		};
+		3DBDAC4929B27B66009D0F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2C77986N3B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jaymagnum.UTM-Snapshot-ManagerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UTM Snapshot-Manager.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UTM Snapshot-Manager";
+			};
+			name = Release;
+		};
+		3DBDAC4B29B27B66009D0F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2C77986N3B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jaymagnum.UTM-Snapshot-ManagerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "UTM Snapshot-Manager";
+			};
+			name = Debug;
+		};
+		3DBDAC4C29B27B66009D0F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2C77986N3B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jaymagnum.UTM-Snapshot-ManagerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "UTM Snapshot-Manager";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3DBDAC1A29B27B65009D0F73 /* Build configuration list for PBXProject "UTM Snapshot-Manager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DBDAC4229B27B66009D0F73 /* Debug */,
+				3DBDAC4329B27B66009D0F73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DBDAC4429B27B66009D0F73 /* Build configuration list for PBXNativeTarget "UTM Snapshot-Manager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DBDAC4529B27B66009D0F73 /* Debug */,
+				3DBDAC4629B27B66009D0F73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DBDAC4729B27B66009D0F73 /* Build configuration list for PBXNativeTarget "UTM Snapshot-ManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DBDAC4829B27B66009D0F73 /* Debug */,
+				3DBDAC4929B27B66009D0F73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DBDAC4A29B27B66009D0F73 /* Build configuration list for PBXNativeTarget "UTM Snapshot-ManagerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DBDAC4B29B27B66009D0F73 /* Debug */,
+				3DBDAC4C29B27B66009D0F73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3DBDAC1729B27B65009D0F73 /* Project object */;
+}

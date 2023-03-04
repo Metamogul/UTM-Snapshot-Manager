@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DBDAC2329B27B65009D0F73 /* UTM_Snapshot_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2229B27B65009D0F73 /* UTM_Snapshot_ManagerApp.swift */; };
+		3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */; };
 		3DBDAC2529B27B65009D0F73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2429B27B65009D0F73 /* ContentView.swift */; };
 		3DBDAC2729B27B66009D0F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2629B27B66009D0F73 /* Assets.xcassets */; };
 		3DBDAC2A29B27B66009D0F73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */; };
+		3DBDAC5029B3642F009D0F73 /* QemuAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC4F29B3642F009D0F73 /* QemuAdapter.swift */; };
+		3DBDAC5229B366BA009D0F73 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC5129B366BA009D0F73 /* Common.swift */; };
+		3DBDAC5429B36AE1009D0F73 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC5329B36AE1009D0F73 /* FileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3DBDAC1F29B27B65009D0F73 /* UTM Snapshot-Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UTM Snapshot-Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DBDAC2229B27B65009D0F73 /* UTM_Snapshot_ManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTM_Snapshot_ManagerApp.swift; sourceTree = "<group>"; };
+		3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMSnapshotManagerApp.swift; sourceTree = "<group>"; };
 		3DBDAC2429B27B65009D0F73 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3DBDAC2629B27B66009D0F73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3DBDAC2B29B27B66009D0F73 /* UTM_Snapshot_Manager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTM_Snapshot_Manager.entitlements; sourceTree = "<group>"; };
+		3DBDAC2B29B27B66009D0F73 /* UTMSnapshotManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMSnapshotManager.entitlements; sourceTree = "<group>"; };
+		3DBDAC4F29B3642F009D0F73 /* QemuAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QemuAdapter.swift; sourceTree = "<group>"; };
+		3DBDAC5129B366BA009D0F73 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		3DBDAC5329B36AE1009D0F73 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +58,13 @@
 		3DBDAC2129B27B65009D0F73 /* UTM Snapshot-Manager */ = {
 			isa = PBXGroup;
 			children = (
-				3DBDAC2229B27B65009D0F73 /* UTM_Snapshot_ManagerApp.swift */,
+				3DBDAC5129B366BA009D0F73 /* Common.swift */,
 				3DBDAC2429B27B65009D0F73 /* ContentView.swift */,
+				3DBDAC5329B36AE1009D0F73 /* FileManager.swift */,
+				3DBDAC4F29B3642F009D0F73 /* QemuAdapter.swift */,
+				3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */,
 				3DBDAC2629B27B66009D0F73 /* Assets.xcassets */,
-				3DBDAC2B29B27B66009D0F73 /* UTM_Snapshot_Manager.entitlements */,
+				3DBDAC2B29B27B66009D0F73 /* UTMSnapshotManager.entitlements */,
 				3DBDAC2829B27B66009D0F73 /* Preview Content */,
 			);
 			path = "UTM Snapshot-Manager";
@@ -139,8 +148,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DBDAC5229B366BA009D0F73 /* Common.swift in Sources */,
 				3DBDAC2529B27B65009D0F73 /* ContentView.swift in Sources */,
-				3DBDAC2329B27B65009D0F73 /* UTM_Snapshot_ManagerApp.swift in Sources */,
+				3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */,
+				3DBDAC5029B3642F009D0F73 /* QemuAdapter.swift in Sources */,
+				3DBDAC5429B36AE1009D0F73 /* FileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +279,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "UTM Snapshot-Manager/UTM_Snapshot_Manager.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "UTM Snapshot-Manager/UTMSnapshotManager.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -283,6 +295,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jaymagnum.UTM-Snapshot-Manager";
+				PRODUCT_MODULE_NAME = UTMSnapshotManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -294,7 +307,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "UTM Snapshot-Manager/UTM_Snapshot_Manager.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "UTM Snapshot-Manager/UTMSnapshotManager.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -310,6 +323,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jaymagnum.UTM-Snapshot-Manager";
+				PRODUCT_MODULE_NAME = UTMSnapshotManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -7,16 +7,39 @@
 
 import Foundation
 
-struct VMSnapShot {
+struct VMSnapshot {
+    let id: UInt
     let tag: String
     let creationDate: Date
 }
 
 struct VMImage {
+    private static let snapshotLinePattern = /^\d+.*?\n/.anchorsMatchLineEndings()
+    private static let idPattern = /^\d+/
+    private static let tagPattern = /^\d+\s+(?<tag>.*?)\s/
+    private static let dateTimePattern = /\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/
+    
     let url: URL
-    var snapshots: [String: VMSnapShot] {
+    var snapshots: [VMSnapshot] {
         get {
-            return [:]
+            guard let imageInfo = QemuImg.infoForImage(self) else {
+                return []
+            }
+            
+            guard imageInfo.contains("Snapshot list:") else {
+                return []
+            }
+            
+            var snapshots: [VMSnapshot] = []
+            for match in imageInfo.matches(of: VMImage.snapshotLinePattern) {
+                guard let snapshot = VMImage.snapshotFromString(match.output.description) else {
+                    continue
+                }
+                
+                snapshots.append(snapshot)
+            }
+            
+            return snapshots
         }
     }
     
@@ -43,6 +66,44 @@ struct VMImage {
         
         return true
     }
+    
+    private static func snapshotFromString(_ snapshotString: String) -> VMSnapshot? {
+        guard let id = self.idFromString(snapshotString),
+              let tag = self.tagFromString(snapshotString),
+              let creationDate = self.creationDateFromString(snapshotString)
+        else {
+            return nil;
+        }
+        
+        return VMSnapshot(id: id, tag: tag, creationDate: creationDate)
+    }
+    
+    private static func idFromString(_ snapshotString: String) -> UInt? {
+        guard let idString = try? VMImage.idPattern.firstMatch(in: snapshotString)?.description else {
+            return nil
+        }
+        
+        return UInt(idString)
+    }
+    
+    private static func tagFromString(_ snapshotString: String) -> String? {
+        guard let tagString = try? VMImage.tagPattern.firstMatch(in: snapshotString)?.tag.description else {
+            return nil
+        }
+        
+        return tagString
+    }
+    
+    private static func creationDateFromString(_ snapshotString: String) -> Date? {
+        guard let dateTimeString = try? VMImage.dateTimePattern.firstMatch(in: snapshotString)?.description else {
+            return nil
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH'-'mm'-'ss"
+        
+        return dateFormatter.date(from: dateTimeString)
+    }
 }
 
 struct VM {
@@ -59,11 +120,11 @@ struct VM {
         var isDirectory = ObjCBool(false)
         
         if !FileManager.default.fileExists(atPath: url.path(percentEncoded: false), isDirectory:&isDirectory) {
-            return nil;
+            return nil
         }
         
         if !isDirectory.boolValue {
-            return nil;
+            return nil
         }
         
         self.url = url

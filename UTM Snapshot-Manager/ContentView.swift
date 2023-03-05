@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 enum Genre: String, Hashable, CaseIterable {
     case action = "Action"
@@ -49,6 +50,19 @@ struct ContentView: View {
                 }
             }
         }
+    }
+    
+    func showOpenPanel() -> [URL]? {
+        let utmType = UTType(filenameExtension: "utm", conformingTo: .package)
+        let openPanel = NSOpenPanel()
+        
+        openPanel.allowedContentTypes = [utmType!]
+        openPanel.allowsMultipleSelection = true
+        openPanel.canChooseDirectories = true
+        openPanel.canChooseFiles = true
+        
+        let response = openPanel.runModal()
+        return response == .OK ? openPanel.urls : nil
     }
 }
 

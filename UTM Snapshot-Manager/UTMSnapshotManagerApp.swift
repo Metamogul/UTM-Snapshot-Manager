@@ -30,11 +30,17 @@ struct UTMSnapshotManagerApp: App {
         
         for vm in vms {
             var vmDebugDescription = ""
-            if let vmUnwrapped = vm {
-                vmDebugDescription = vmUnwrapped.url.debugDescription + "\n"
+            guard let vmUnwrapped = vm else {
+                continue
             }
-            let imagesDebugDescription = vm?.images.debugDescription ?? ""
+
+            vmDebugDescription = vmUnwrapped.url.debugDescription + "\n"
+            let imagesDebugDescription = vmUnwrapped.images.debugDescription
             NSLog(vmDebugDescription + imagesDebugDescription)
+            
+            for image in vmUnwrapped.images {
+                let snapshots = image.snapshots
+            }
         }
     }
 }

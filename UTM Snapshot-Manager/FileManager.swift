@@ -45,6 +45,10 @@ extension FileManager {
         guard let urlUnwrapped = url else {
             return []
         }
+        
+        if self.isUTMPackageUrl(urlUnwrapped) {
+            return [urlUnwrapped]
+        }
          
         let resourceKeys = Set<URLResourceKey>([.nameKey, .isDirectoryKey])
         let directoryEnumerator = FileManager.default.enumerator(at: urlUnwrapped, includingPropertiesForKeys: Array(resourceKeys), options: .skipsHiddenFiles)!
@@ -63,11 +67,25 @@ extension FileManager {
                 continue
             }
             
-            if fileURL.pathExtension == "utm" && NSWorkspace.shared.isFilePackage(atPath: fileURL.path(percentEncoded: false)){
+            if self.isUTMPackageUrl(fileURL) {
                 utmPackageURLs.append(fileURL)
             }
         }
          
         return utmPackageURLs
+    }
+    
+    static func utmPackageURLsAt(_ urls: [URL]) -> [URL] {
+        var utmPackageURLs: [URL] = []
+        
+        for url in urls {
+            utmPackageURLs.append(contentsOf: self.utmPackageURLsAt(url))
+        }
+        
+        return utmPackageURLs
+    }
+    
+    private static func isUTMPackageUrl(_ url: URL) -> Bool {
+        return url.pathExtension == "utm" && NSWorkspace.shared.isFilePackage(atPath: url.path(percentEncoded: false))
     }
 }

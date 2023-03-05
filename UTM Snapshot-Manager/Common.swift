@@ -21,26 +21,24 @@ struct VMImage {
     
     let url: URL
     var snapshots: [VMSnapshot] {
-        get {
-            guard let imageInfo = QemuImg.infoForImage(self) else {
-                return []
-            }
-            
-            guard imageInfo.contains("Snapshot list:") else {
-                return []
-            }
-            
-            var snapshots: [VMSnapshot] = []
-            for match in imageInfo.matches(of: VMImage.snapshotLinePattern) {
-                guard let snapshot = VMImage.snapshotFromString(match.output.description) else {
-                    continue
-                }
-                
-                snapshots.append(snapshot)
-            }
-            
-            return snapshots
+        guard let imageInfo = QemuImg.infoForImage(self) else {
+            return []
         }
+        
+        guard imageInfo.contains("Snapshot list:") else {
+            return []
+        }
+        
+        var snapshots: [VMSnapshot] = []
+        for match in imageInfo.matches(of: VMImage.snapshotLinePattern) {
+            guard let snapshot = VMImage.snapshotFromString(match.output.description) else {
+                continue
+            }
+            
+            snapshots.append(snapshot)
+        }
+        
+        return snapshots
     }
     
     init(validatedURL: URL) {
@@ -109,11 +107,9 @@ struct VMImage {
 struct VM {
     let url: URL
     var images: [VMImage] {
-        get {
-            return FileManager.qcow2FileURLsAt(url)
-                .filter { VMImage.validateURL($0) }
-                .map { VMImage(validatedURL: $0) }
-        }
+        return FileManager.qcow2FileURLsAt(url)
+            .filter { VMImage.validateURL($0) }
+            .map { VMImage(validatedURL: $0) }
     }
     
     init?(url: URL) {

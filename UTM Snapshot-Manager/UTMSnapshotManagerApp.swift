@@ -25,21 +25,21 @@ struct UTMSnapshotManagerApp: App {
     init() {
         let homeURL = FileManager.default.homeDirectoryForCurrentUser
         let searchUrl = URL(string: "Documents/dev/Virtual%20Machines.localized", relativeTo: homeURL)
-        let utmPackageURLs = FileManager.utmPackageURLsAt(searchUrl)
-        let vms = utmPackageURLs.map { VM(url: $0) }
         
-        for vm in vms {
-            var vmDebugDescription = ""
-            guard let vmUnwrapped = vm else {
+        var vms: [VM] = []
+        for url in FileManager.utmPackageURLsAt(searchUrl) {
+            guard let vm = VM(url: url) else {
                 continue
             }
-
-            vmDebugDescription = vmUnwrapped.url.debugDescription + "\n"
-            let imagesDebugDescription = vmUnwrapped.images.debugDescription
-            NSLog(vmDebugDescription + imagesDebugDescription)
             
-            for image in vmUnwrapped.images {
-                let snapshots = image.snapshots
+            vms.append(vm)
+        }
+        
+        for vm: VM in vms {
+            NSLog(vm.url.debugDescription + "\n" + vm.images.debugDescription)
+            
+            for image in vm.images {
+                NSLog(image.snapshots.debugDescription)
             }
         }
     }

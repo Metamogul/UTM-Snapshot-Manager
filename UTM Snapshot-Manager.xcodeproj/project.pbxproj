@@ -11,7 +11,7 @@
 		3DBDAC2529B27B65009D0F73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2429B27B65009D0F73 /* ContentView.swift */; };
 		3DBDAC2729B27B66009D0F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2629B27B66009D0F73 /* Assets.xcassets */; };
 		3DBDAC2A29B27B66009D0F73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */; };
-		3DBDAC5029B3642F009D0F73 /* QemuAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC4F29B3642F009D0F73 /* QemuAdapter.swift */; };
+		3DBDAC5029B3642F009D0F73 /* QemuImg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC4F29B3642F009D0F73 /* QemuImg.swift */; };
 		3DBDAC5229B366BA009D0F73 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC5129B366BA009D0F73 /* Common.swift */; };
 		3DBDAC5429B36AE1009D0F73 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC5329B36AE1009D0F73 /* FileManager.swift */; };
 /* End PBXBuildFile section */
@@ -23,7 +23,7 @@
 		3DBDAC2629B27B66009D0F73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3DBDAC2B29B27B66009D0F73 /* UTMSnapshotManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMSnapshotManager.entitlements; sourceTree = "<group>"; };
-		3DBDAC4F29B3642F009D0F73 /* QemuAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QemuAdapter.swift; sourceTree = "<group>"; };
+		3DBDAC4F29B3642F009D0F73 /* QemuImg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QemuImg.swift; sourceTree = "<group>"; };
 		3DBDAC5129B366BA009D0F73 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		3DBDAC5329B36AE1009D0F73 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,7 +61,7 @@
 				3DBDAC5129B366BA009D0F73 /* Common.swift */,
 				3DBDAC2429B27B65009D0F73 /* ContentView.swift */,
 				3DBDAC5329B36AE1009D0F73 /* FileManager.swift */,
-				3DBDAC4F29B3642F009D0F73 /* QemuAdapter.swift */,
+				3DBDAC4F29B3642F009D0F73 /* QemuImg.swift */,
 				3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */,
 				3DBDAC2629B27B66009D0F73 /* Assets.xcassets */,
 				3DBDAC2B29B27B66009D0F73 /* UTMSnapshotManager.entitlements */,
@@ -151,7 +151,7 @@
 				3DBDAC5229B366BA009D0F73 /* Common.swift in Sources */,
 				3DBDAC2529B27B65009D0F73 /* ContentView.swift in Sources */,
 				3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */,
-				3DBDAC5029B3642F009D0F73 /* QemuAdapter.swift in Sources */,
+				3DBDAC5029B3642F009D0F73 /* QemuImg.swift in Sources */,
 				3DBDAC5429B36AE1009D0F73 /* FileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

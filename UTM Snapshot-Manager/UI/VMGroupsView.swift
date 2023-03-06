@@ -8,23 +8,19 @@
 import SwiftUI
 
 struct VMGroupsView: View {
-    @ObservedObject private var userSettings = UserSettings()
+    @EnvironmentObject private var userSettings: UserSettings
     
     var body: some View {
         Section(header: Text("VM Groups")) {
-            ForEach($userSettings.vmGroups) {_ in 
-                
-            }
-            /*ForEach($userSettings.vmGroups) { vmGroupName in
-                NavigationLink(destination: VMGroupDetailsView(config: $userSettings.vmGroups[vmGroupName])).scrollable()) {
-                    Label("Display", systemImage: "rectangle.on.rectangle")
+            ForEach($userSettings.vmGroups) { $vmGroup in
+                NavigationLink(destination: VMGroupDetailsView(vmGroup: $vmGroup)) {
+                    Label(vmGroup.name, systemImage: "server.rack")
                 }.contextMenu {
                     Button("Remove") {
-                        // config.displays.removeAll(where: { $0.id == display.id })
-                        userSettings.vmGroups.removeValue(forKey: $vmGroupName)
+                        userSettings.vmGroups.removeAll(where: { $0.id == vmGroup.id })
                     }
                 }
-            }*/
+            }
         }
     }
 }

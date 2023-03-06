@@ -21,47 +21,34 @@ struct Movie {
 }
 
 struct MainView: View {
+    @ObservedObject private var userSettings = UserSettings()
     
     @State private var selectedGenre: Genre?
-    
-    let movies = [
-        Movie(name: "Superman", genre: .action),
-        Movie(name: "28 Days Later", genre: .horror),
-        Movie(name: "World War Z", genre: .horror),
-        Movie(name: "Finding Nemo ", genre: .kids)
-    ]
     
     let columns: [GridItem] = [.init(.fixed(400)), .init(.fixed(400))]
     
     var body: some View {
         NavigationSplitView {
-            List(Genre.allCases, id: \.self, selection: $selectedGenre) { genre in
+            /*List(Genre.allCases, id: \.self, selection: $selectedGenre) { genre in
                 NavigationLink(genre.rawValue, value: genre)
+            }*/
+            List {
+                VMGroupsView()
             }
+            .environmentObject(userSettings)
         } detail: {
-            let filteredMovies = movies.filter { $0.genre == selectedGenre}
-            
             VStack {
-                LazyVGrid(columns: columns) {
-                    ForEach(filteredMovies, id: \.name) { movie in
-                        Text(movie.name)
-                            .frame(width: 200, height: 200)
-                            .foregroundColor(.white)
-                            .background(content: { Color.gray})
-                    }
-                }
                 Button {
-                    MainView.createDemoVMGroup()
+                    self.createDemoVMGroup()
                 } label: {
                     Text("Create demo VM group")
                 }
-
             }
             
         }
     }
     
-    private static func showOpenPanel() -> [URL]? {
+    private func showOpenPanel() -> [URL]? {
         let utmType = UTType(filenameExtension: "utm", conformingTo: .package)
         let openPanel = NSOpenPanel()
         
@@ -74,7 +61,7 @@ struct MainView: View {
         return response == .OK ? openPanel.urls : nil
     }
     
-    private static func createDemoVMGroup() {
+    private func createDemoVMGroup() {
         guard let baseUrls = self.showOpenPanel() else {
             return
         }
@@ -85,7 +72,7 @@ struct MainView: View {
             .map { VM(validatedUrl: $0) }
         let vmTestGroup = VMGroup(id: UUID(), name: "Test", vms: vms)
         
-        UserSettings().vmGroups.append(vmTestGroup)
+        self.userSettings.vmGroups.append(vmTestGroup)
     }
 }
 

@@ -45,26 +45,6 @@ struct VMImage {
         self.url = validatedURL
     }
     
-    static func validateURL(_ url: URL) -> Bool {
-        if !FileManager.default.fileExists(atPath: url.path(percentEncoded: false)) {
-            return false
-        }
-        
-        if !FileManager.default.isReadableFile(atPath: url.path(percentEncoded: false)) {
-            return false
-        }
-        
-        if !FileManager.default.isWritableFile(atPath: url.path(percentEncoded: false)) {
-            return false
-        }
-        
-        if url.pathExtension != "qcow2" {
-            return false
-        }
-        
-        return true
-    }
-    
     private static func snapshotFromString(_ snapshotString: String) -> VMSnapshot? {
         guard let id = self.idFromString(snapshotString),
               let tag = self.tagFromString(snapshotString),
@@ -108,21 +88,11 @@ struct VM {
     let url: URL
     var images: [VMImage] {
         return FileManager.qcow2FileURLsAt(url)
-            .filter { VMImage.validateURL($0) }
+            .filter { FileManager.isValidQcow2ImageUrl($0) }
             .map { VMImage(validatedURL: $0) }
     }
     
-    init?(url: URL) {
-        var isDirectory = ObjCBool(false)
-        
-        if !FileManager.default.fileExists(atPath: url.path(percentEncoded: false), isDirectory:&isDirectory) {
-            return nil
-        }
-        
-        if !isDirectory.boolValue {
-            return nil
-        }
-        
-        self.url = url
+    init(validatedUrl: URL) {
+        self.url = validatedUrl
     }
 }

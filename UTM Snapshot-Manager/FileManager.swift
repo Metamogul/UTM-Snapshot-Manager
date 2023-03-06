@@ -46,7 +46,7 @@ extension FileManager {
             return []
         }
         
-        if self.isUTMPackageUrl(urlUnwrapped) {
+        if self.isValidUTMPackageUrl(urlUnwrapped) {
             return [urlUnwrapped]
         }
          
@@ -67,7 +67,7 @@ extension FileManager {
                 continue
             }
             
-            if self.isUTMPackageUrl(fileURL) {
+            if self.isValidUTMPackageUrl(fileURL) {
                 utmPackageURLs.append(fileURL)
             }
         }
@@ -85,7 +85,52 @@ extension FileManager {
         return utmPackageURLs
     }
     
-    private static func isUTMPackageUrl(_ url: URL) -> Bool {
-        return url.pathExtension == "utm" && NSWorkspace.shared.isFilePackage(atPath: url.path(percentEncoded: false))
+    static func isValidQcow2ImageUrl(_ url: URL) -> Bool {
+        if !FileManager.default.fileExists(atPath: url.path(percentEncoded: false)) {
+            return false
+        }
+        
+        if !FileManager.default.isReadableFile(atPath: url.path(percentEncoded: false)) {
+            return false
+        }
+        
+        if !FileManager.default.isWritableFile(atPath: url.path(percentEncoded: false)) {
+            return false
+        }
+        
+        if url.pathExtension != "qcow2" {
+            return false
+        }
+        
+        return true
+    }
+    
+    static func isValidUTMPackageUrl(_ url: URL) -> Bool {
+        var isDirectory = ObjCBool(false)
+        if !FileManager.default.fileExists(atPath: url.path(percentEncoded: false), isDirectory: &isDirectory) {
+            return false
+        }
+        
+        if !isDirectory.boolValue {
+            return false;
+        }
+        
+        if !FileManager.default.isReadableFile(atPath: url.path(percentEncoded: false)) {
+            return false
+        }
+        
+        if !FileManager.default.isWritableFile(atPath: url.path(percentEncoded: false)) {
+            return false
+        }
+        
+        if url.pathExtension != "utm" {
+            return false
+        }
+        
+        if !NSWorkspace.shared.isFilePackage(atPath: url.path(percentEncoded: false)) {
+            return false
+        }
+        
+        return true
     }
 }

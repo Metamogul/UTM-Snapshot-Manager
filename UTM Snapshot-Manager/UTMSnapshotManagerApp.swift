@@ -11,7 +11,7 @@ import SwiftUI
 struct UTMSnapshotManagerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
                 .onDisappear() {
                     terminateApp()
                 }

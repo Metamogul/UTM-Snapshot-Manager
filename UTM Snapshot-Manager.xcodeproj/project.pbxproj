@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D19687D29B604FB00541C8B /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19687C29B604FB00541C8B /* UserSettings.swift */; };
 		3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */; };
-		3DBDAC2529B27B65009D0F73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2429B27B65009D0F73 /* ContentView.swift */; };
+		3DBDAC2529B27B65009D0F73 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2429B27B65009D0F73 /* MainView.swift */; };
 		3DBDAC2729B27B66009D0F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2629B27B66009D0F73 /* Assets.xcassets */; };
 		3DBDAC2A29B27B66009D0F73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */; };
 		3DBDAC5029B3642F009D0F73 /* QemuImg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC4F29B3642F009D0F73 /* QemuImg.swift */; };
@@ -21,7 +21,7 @@
 		3D19687C29B604FB00541C8B /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		3DBDAC1F29B27B65009D0F73 /* UTM Snapshot-Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UTM Snapshot-Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMSnapshotManagerApp.swift; sourceTree = "<group>"; };
-		3DBDAC2429B27B65009D0F73 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3DBDAC2429B27B65009D0F73 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3DBDAC2629B27B66009D0F73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3DBDAC2B29B27B66009D0F73 /* UTMSnapshotManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMSnapshotManager.entitlements; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DBDAC5229B366BA009D0F73 /* Common.swift in Sources */,
-				3DBDAC2529B27B65009D0F73 /* ContentView.swift in Sources */,
+				3DBDAC2529B27B65009D0F73 /* MainView.swift in Sources */,
 				3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */,
 				3DBDAC5029B3642F009D0F73 /* QemuImg.swift in Sources */,
 				3D19687D29B604FB00541C8B /* UserSettings.swift in Sources */,

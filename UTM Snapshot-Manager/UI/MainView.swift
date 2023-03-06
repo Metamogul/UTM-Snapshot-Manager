@@ -20,7 +20,7 @@ struct Movie {
     let genre: Genre
 }
 
-struct ContentView: View {
+struct MainView: View {
     
     @State private var selectedGenre: Genre?
     
@@ -52,7 +52,7 @@ struct ContentView: View {
         }
     }
     
-    func showOpenPanel() -> [URL]? {
+    private static func showOpenPanel() -> [URL]? {
         let utmType = UTType(filenameExtension: "utm", conformingTo: .package)
         let openPanel = NSOpenPanel()
         
@@ -64,10 +64,20 @@ struct ContentView: View {
         let response = openPanel.runModal()
         return response == .OK ? openPanel.urls : nil
     }
+    
+    private static func createDemoVMGroup() {
+        guard let baseUrls = self.showOpenPanel() else {
+            return
+        }
+        
+        let vmUrls = FileManager.utmPackageURLsAt(baseUrls)
+        
+        UserSettings().vmGroups = ["Test" : vms]
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
     }
 }

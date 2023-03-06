@@ -8,32 +8,30 @@
 import Foundation
 
 class UserSettings: ObservableObject {
-    private static let vmGroupsKey = "vmGroups"
+    private static let vmGroupsEncodedKey = "vmGroupsEncoded"
     
-    @Published var vmGroups: [String:[VM]] {
+    @Published var vmGroups: [VMGroup] {
         didSet {
-            let vmPathGroups = vmGroups.mapValues { $0.map { $0.url.path() } }
-            UserDefaults.standard.set(vmPathGroups, forKey: UserSettings.vmGroupsKey)
+            let encoder = JSONEncoder()
+            if let vmGroupsEncoded = try? encoder.encode(vmGroups) {
+                UserDefaults.standard.set(vmGroupsEncoded, forKey: UserSettings.vmGroupsEncodedKey)
+            }
+            
         }
     }
     
     init() {
-        var vmGroups: [String:[VM]] = [:]
-        
-        if let vmPathGroups = UserDefaults.standard.object(forKey: UserSettings.vmGroupsKey) as? [String: [String]] {
-            vmGroups = UserSettings.vmGroupsFromPathGroups(vmPathGroups)
+        guard let vmGroupsEncoded = UserDefaults.standard.object(forKey: UserSettings.vmGroupsEncodedKey) as? Data else {
+            self.vmGroups = []
+            return
         }
         
-        self.vmGroups = vmGroups
-    }
-    
-    private static func vmGroupsFromPathGroups(_ vmPathGroups: [String: [String]]) -> [String:[VM]] {
-        return vmPathGroups
-            .mapValues { $0
-                .filter { URL(string: $0) != nil }
-                .map { URL(string: $0)! }
-                .filter { FileManager.isValidUTMPackageUrl($0) }
-                .map { VM(validatedUrl: $0) }
-            }
+        let decoder = JSONDecoder()
+        guard let vmGroups = try? decoder.decode([VMGroup].self, from: vmGroupsEncoded) else {
+            self.vmGroups = []
+            return
+        }
+        
+        self.vmGroups = vmGroups;
     }
 }

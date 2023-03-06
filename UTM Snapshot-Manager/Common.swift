@@ -84,7 +84,7 @@ struct VMImage {
     }
 }
 
-struct VM {
+struct VM : Codable {
     let url: URL
     var images: [VMImage] {
         return FileManager.qcow2FileURLsAt(url)
@@ -95,4 +95,10 @@ struct VM {
     init(validatedUrl: URL) {
         self.url = validatedUrl
     }
+}
+
+struct VMGroup : Identifiable, Codable {
+    let id: UUID
+    let name: String
+    let vms: [VM]
 }

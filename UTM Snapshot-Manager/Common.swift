@@ -97,8 +97,22 @@ struct VM : Codable {
     }
 }
 
-struct VMGroup : Identifiable, Codable {
+struct VMGroup : Identifiable, Codable, Hashable {
+    static func == (lhs: VMGroup, rhs: VMGroup) -> Bool {
+        return lhs.id == rhs.id;
+    }
+    
     let id: UUID
-    let name: String
-    let vms: [VM]
+    var name: String
+    var vms: [VM]
+    
+    init(id: UUID = UUID(), name: String = "VMGroup", vms: [VM] = []) {
+        self.id = id
+        self.name = name
+        self.vms = vms
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
 }

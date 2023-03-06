@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D19684129B5F58400541C8B /* VMsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19684029B5F58400541C8B /* VMsView.swift */; };
+		3D19684129B5F58400541C8B /* VMGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19684029B5F58400541C8B /* VMGroupsView.swift */; };
 		3D19687D29B604FB00541C8B /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19687C29B604FB00541C8B /* UserSettings.swift */; };
+		3D19687F29B62B6600541C8B /* VMGroupDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19687E29B62B6600541C8B /* VMGroupDetailsView.swift */; };
 		3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */; };
 		3DBDAC2529B27B65009D0F73 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2429B27B65009D0F73 /* MainView.swift */; };
 		3DBDAC2729B27B66009D0F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2629B27B66009D0F73 /* Assets.xcassets */; };
@@ -19,8 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D19684029B5F58400541C8B /* VMsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMsView.swift; sourceTree = "<group>"; };
+		3D19684029B5F58400541C8B /* VMGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMGroupsView.swift; sourceTree = "<group>"; };
 		3D19687C29B604FB00541C8B /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		3D19687E29B62B6600541C8B /* VMGroupDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMGroupDetailsView.swift; sourceTree = "<group>"; };
 		3DBDAC1F29B27B65009D0F73 /* UTM Snapshot-Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UTM Snapshot-Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMSnapshotManagerApp.swift; sourceTree = "<group>"; };
 		3DBDAC2429B27B65009D0F73 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -47,7 +49,8 @@
 			isa = PBXGroup;
 			children = (
 				3DBDAC2429B27B65009D0F73 /* MainView.swift */,
-				3D19684029B5F58400541C8B /* VMsView.swift */,
+				3D19684029B5F58400541C8B /* VMGroupsView.swift */,
+				3D19687E29B62B6600541C8B /* VMGroupDetailsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -108,6 +111,8 @@
 			dependencies = (
 			);
 			name = "UTM Snapshot-Manager";
+			packageProductDependencies = (
+			);
 			productName = "UTM Snapshot-Manager";
 			productReference = 3DBDAC1F29B27B65009D0F73 /* UTM Snapshot-Manager.app */;
 			productType = "com.apple.product-type.application";
@@ -136,6 +141,8 @@
 				Base,
 			);
 			mainGroup = 3DBDAC1629B27B65009D0F73;
+			packageReferences = (
+			);
 			productRefGroup = 3DBDAC2029B27B65009D0F73 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -166,9 +173,10 @@
 				3DBDAC2529B27B65009D0F73 /* MainView.swift in Sources */,
 				3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */,
 				3DBDAC5029B3642F009D0F73 /* QemuImg.swift in Sources */,
+				3D19687F29B62B6600541C8B /* VMGroupDetailsView.swift in Sources */,
 				3D19687D29B604FB00541C8B /* UserSettings.swift in Sources */,
 				3DBDAC5429B36AE1009D0F73 /* FileManager.swift in Sources */,
-				3D19684129B5F58400541C8B /* VMsView.swift in Sources */,
+				3D19684129B5F58400541C8B /* VMGroupsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

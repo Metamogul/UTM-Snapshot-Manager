@@ -41,14 +41,23 @@ struct MainView: View {
         } detail: {
             let filteredMovies = movies.filter { $0.genre == selectedGenre}
             
-            LazyVGrid(columns: columns) {
-                ForEach(filteredMovies, id: \.name) { movie in
-                    Text(movie.name)
-                        .frame(width: 200, height: 200)
-                        .foregroundColor(.white)
-                        .background(content: { Color.gray})
+            VStack {
+                LazyVGrid(columns: columns) {
+                    ForEach(filteredMovies, id: \.name) { movie in
+                        Text(movie.name)
+                            .frame(width: 200, height: 200)
+                            .foregroundColor(.white)
+                            .background(content: { Color.gray})
+                    }
                 }
+                Button {
+                    MainView.createDemoVMGroup()
+                } label: {
+                    Text("Create demo VM group")
+                }
+
             }
+            
         }
     }
     
@@ -71,8 +80,12 @@ struct MainView: View {
         }
         
         let vmUrls = FileManager.utmPackageURLsAt(baseUrls)
+        let vms = vmUrls
+            .filter { FileManager.isValidUTMPackageUrl($0) }
+            .map { VM(validatedUrl: $0) }
+        let vmTestGroup = VMGroup(id: UUID(), name: "Test", vms: vms)
         
-        UserSettings().vmGroups = ["Test" : vms]
+        UserSettings().vmGroups.append(vmTestGroup)
     }
 }
 

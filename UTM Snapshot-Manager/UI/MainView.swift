@@ -8,22 +8,8 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-enum Genre: String, Hashable, CaseIterable {
-    case action = "Action"
-    case horror = "Horror"
-    case ficion = "Fiction"
-    case kids = "Kids"
-}
-
-struct Movie {
-    let name: String
-    let genre: Genre
-}
-
 struct MainView: View {
     @ObservedObject private var userSettings = UserSettings()
-    
-    @State private var selectedGenre: Genre?
     
     let columns: [GridItem] = [.init(.fixed(400)), .init(.fixed(400))]
     

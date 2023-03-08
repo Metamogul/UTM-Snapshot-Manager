@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D19684129B5F58400541C8B /* VMGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19684029B5F58400541C8B /* VMGroupsView.swift */; };
+		3D19684129B5F58400541C8B /* VMGroupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19684029B5F58400541C8B /* VMGroupsList.swift */; };
 		3D19687D29B604FB00541C8B /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19687C29B604FB00541C8B /* UserSettings.swift */; };
 		3D19687F29B62B6600541C8B /* VMGroupDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D19687E29B62B6600541C8B /* VMGroupDetailsView.swift */; };
 		3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */; };
@@ -20,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D19684029B5F58400541C8B /* VMGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMGroupsView.swift; sourceTree = "<group>"; };
+		3D19684029B5F58400541C8B /* VMGroupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMGroupsList.swift; sourceTree = "<group>"; };
 		3D19687C29B604FB00541C8B /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		3D19687E29B62B6600541C8B /* VMGroupDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMGroupDetailsView.swift; sourceTree = "<group>"; };
 		3DBDAC1F29B27B65009D0F73 /* UTM Snapshot-Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UTM Snapshot-Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,7 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				3DBDAC2429B27B65009D0F73 /* MainView.swift */,
-				3D19684029B5F58400541C8B /* VMGroupsView.swift */,
+				3D19684029B5F58400541C8B /* VMGroupsList.swift */,
 				3D19687E29B62B6600541C8B /* VMGroupDetailsView.swift */,
 			);
 			path = UI;
@@ -176,7 +176,7 @@
 				3D19687F29B62B6600541C8B /* VMGroupDetailsView.swift in Sources */,
 				3D19687D29B604FB00541C8B /* UserSettings.swift in Sources */,
 				3DBDAC5429B36AE1009D0F73 /* FileManager.swift in Sources */,
-				3D19684129B5F58400541C8B /* VMGroupsView.swift in Sources */,
+				3D19684129B5F58400541C8B /* VMGroupsList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

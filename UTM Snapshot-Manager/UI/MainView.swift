@@ -18,9 +18,7 @@ struct MainView: View {
             /*List(Genre.allCases, id: \.self, selection: $selectedGenre) { genre in
                 NavigationLink(genre.rawValue, value: genre)
             }*/
-            List {
-                VMGroupsView()
-            }
+            VMGroupsList()
             .environmentObject(userSettings)
         } detail: {
             VStack {

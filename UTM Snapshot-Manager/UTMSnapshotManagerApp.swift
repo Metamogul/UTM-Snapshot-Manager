@@ -21,9 +21,4 @@ struct UTMSnapshotManagerApp: App {
     private func terminateApp() {
         NSApplication.shared.terminate(self)
     }
-    
-    init() {
-        let vmGroups = UserSettings().vmGroups
-    }
-
 }

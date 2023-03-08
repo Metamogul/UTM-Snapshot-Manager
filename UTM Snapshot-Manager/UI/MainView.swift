@@ -15,11 +15,8 @@ struct MainView: View {
     
     var body: some View {
         NavigationSplitView {
-            /*List(Genre.allCases, id: \.self, selection: $selectedGenre) { genre in
-                NavigationLink(genre.rawValue, value: genre)
-            }*/
             VMGroupsList()
-            .environmentObject(userSettings)
+                .environmentObject(userSettings)
         } detail: {
             VStack {
                 Button {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VMGroupsList: View {
     @EnvironmentObject private var userSettings: UserSettings
-    @State private var presentNewGroupPopover: Bool = false
+    @State private var presentingNewGroupPopover: Bool = false
     @State private var newGroupName: String = ""
     
     struct PopoverModel: Identifiable {
@@ -25,19 +25,14 @@ struct VMGroupsList: View {
                         Label(vmGroup.name, systemImage: "rectangle.on.rectangle")
                     }
                     .contextMenu {
-                        Button("Remove") {
-                            userSettings.vmGroups.removeAll(where: { $0.id == vmGroup.id })
-                        }
+                        Button("Remove", action: self.removeGroup(vmGroup))
                     }
                 }
-                Button {
-                    self.newGroupName = ""
-                    self.presentNewGroupPopover = true
-                } label: {
+                Button(action: presentNewGroupPopover) {
                     Label("New…", systemImage: "plus")
                 }
                 .buttonStyle(.plain )
-                .popover(isPresented: self.$presentNewGroupPopover) {
+                .popover(isPresented: self.$presentingNewGroupPopover) {
                     VStack {
                         TextField("Name", text: self.$newGroupName)
                             .frame(minWidth: 100)
@@ -52,9 +47,20 @@ struct VMGroupsList: View {
         .frame(minWidth: 0)
     }
     
+    private func presentNewGroupPopover() {
+        self.newGroupName = ""
+        self.presentingNewGroupPopover = true
+    }
+    
     private func createNewGroup() {
-        self.presentNewGroupPopover = false;
+        self.presentingNewGroupPopover = false;
         userSettings.vmGroups.append(VMGroup(name: !self.newGroupName.isEmpty ? self.newGroupName : "New Group"))
+    }
+    
+    private func removeGroup(_ vmGroup: VMGroup) -> () -> () {
+        return {
+            userSettings.vmGroups.removeAll(where: { $0.id == vmGroup.id })
+        }
     }
 }
 

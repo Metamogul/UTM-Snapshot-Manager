@@ -13,17 +13,36 @@ struct VMSnapshot: Identifiable {
     let creationDate: Date
 }
 
-struct VMImage: Identifiable, Equatable {
+class VMImage: Identifiable, Equatable, ObservableObject {
     static func == (lhs: VMImage, rhs: VMImage) -> Bool {
         return lhs.id == rhs.id;
     }
     
     let url: URL
     var id: Int { self.url.hashValue }
-    var snapshots: [VMSnapshot]
+    @Published var snapshots: [VMSnapshot]
     
     init(validatedURL: URL) {
         self.url = validatedURL
+        self.snapshots = QemuImg.snapshotsForImageUrl(self.url)
+    }
+    
+    func createSnapshot(_ snapshotTag: String = "") {
+        QemuImg.createSnapshotForImageUrl(self.url, snapshotTag: snapshotTag)
+        self.updateSnapshots()
+    }
+    
+    func removeSnapshot(_ snapshot: VMSnapshot) {
+        QemuImg.deleteSnapshotForImageUrl(self.url, snapshotTag: snapshot.tag)
+        self.updateSnapshots()
+    }
+    
+    func restoreSnapshot(_ snapshot: VMSnapshot) {
+        QemuImg.restoreSnapshotForImageUrl(self.url, snapshotTag: snapshot.tag)
+        self.updateSnapshots()
+    }
+    
+    func updateSnapshots() {
         self.snapshots = QemuImg.snapshotsForImageUrl(self.url)
     }
 }

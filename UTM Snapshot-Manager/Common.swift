@@ -89,7 +89,7 @@ struct VMImage: Identifiable, Equatable {
     }
 }
 
-struct VM : Codable, Identifiable, Equatable {
+struct VM : Identifiable, Codable, Equatable {
     static func == (lhs: VM, rhs: VM) -> Bool {
         return lhs.id == rhs.id;
     }

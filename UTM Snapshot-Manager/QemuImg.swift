@@ -15,6 +15,18 @@ class QemuImg {
     private static let tagPattern = /^\d+\s+(?<tag>.*?)\s/
     private static let dateTimePattern = /\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/
     
+    private enum QemuImgCommand: String {
+        case info = "info"
+        case snapshot = "snapshot"
+    }
+    
+    private enum QemuImgSnapshotSubcommand: String {
+        case none
+        case create = "-c"
+        case delete = "-d"
+        case restore = "-a"
+    }
+    
     static func snapshotsForImageUrl(_ url: URL) -> [VMSnapshot] {
         guard let imageInfo = QemuImg.infoForImageUrl(url),
               imageInfo.contains("Snapshot list:") else {
@@ -33,13 +45,33 @@ class QemuImg {
         return snapshots
     }
     
+    static func createSnapshotForImageUrl(_ url: URL, snapshotTag: String = "") {
+        var snapshotTag = snapshotTag
+        
+        if (snapshotTag.isEmpty) {
+            var hasher = Hasher()
+            
+            hasher.combine(url)
+            hasher.combine(Date.now)
+            
+            let hash = hasher.finalize()
+            let hexString = String(format: "%02X", hash)
+            snapshotTag = String(hexString.prefix(8))
+        }
+        
+        self.runQemuImgCommand(.snapshot, snapshotSubCommand: .create, snapshotTag: snapshotTag, imageUrl: url)
+    }
+    
+    static func deleteSnapshotForImageUrl(_ url: URL, snapshotTag: String) {
+        self.runQemuImgCommand(.snapshot, snapshotSubCommand: .delete, snapshotTag: snapshotTag, imageUrl: url)
+    }
+    
+    static func restoreSnapshotForImageUrl(_ url: URL, snapshotTag: String) {
+        self.runQemuImgCommand(.snapshot, snapshotSubCommand: .restore, snapshotTag: snapshotTag, imageUrl: url)
+    }
+    
     private static func infoForImageUrl(_ url: URL) -> String? {
-        let qemuImgCommandBase = "\(qemuImgPath) info"
-        let qemuImgParameter = url.path(percentEncoded: false)
-        
-        let qemuImgCommand = "\(qemuImgCommandBase) \"\(qemuImgParameter)\""
-        
-        return try? self.runCommandInShell(qemuImgCommand)
+        return self.runQemuImgCommand(.info, imageUrl: url)
     }
     
     private static func snapshotFromString(_ snapshotString: String) -> VMSnapshot? {
@@ -47,7 +79,7 @@ class QemuImg {
               let tag = self.tagFromString(snapshotString),
               let creationDate = self.creationDateFromString(snapshotString)
         else {
-            return nil;
+            return nil
         }
         
         return VMSnapshot(id: id, tag: tag, creationDate: creationDate)
@@ -78,6 +110,23 @@ class QemuImg {
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH'-'mm'-'ss"
         
         return dateFormatter.date(from: dateTimeString)
+    }
+    
+    @discardableResult private static func runQemuImgCommand(_ command: QemuImgCommand, snapshotSubCommand: QemuImgSnapshotSubcommand = .none, snapshotTag: String = "", imageUrl: URL) -> String? {
+        guard command != .snapshot || (snapshotSubCommand != .none && !snapshotTag.isEmpty) else {
+            return nil
+        }
+        
+        var commandComponents: [String] = [Self.qemuImgPath, command.rawValue]
+        if command == .snapshot {
+            commandComponents.append(snapshotSubCommand.rawValue)
+            commandComponents.append(snapshotTag)
+        }
+        commandComponents.append("\"\(imageUrl.path(percentEncoded: false))\"")
+        
+        let qemuImgCommand = commandComponents.joined(separator: " ")
+        
+        return try? self.runCommandInShell(qemuImgCommand)
     }
     
     @discardableResult private static func runCommandInShell(_ command: String) throws -> String {

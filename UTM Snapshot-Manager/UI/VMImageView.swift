@@ -9,10 +9,9 @@ import SwiftUI
 
 struct VMImageView: View {
     var vm: VM
-    var image: VMImage
+    @StateObject var image: VMImage
     
     @State private var selectedSnapshotID: VMSnapshot.ID?
-    //StateObject private var snapshots: [VMSnapshot]
     
     var body: some View {
         Label(image.url.lastPathComponent, systemImage: "externaldrive")
@@ -21,19 +20,18 @@ struct VMImageView: View {
             .padding(.bottom, VMSectionView.bottomPadding / 2)
             .padding(.top, VMSectionView.bottomPadding / 2)
         
-        let snapshots = image.snapshots
-        if snapshots.count == 0 {
+        if image.snapshots.count == 0 {
             Text("This image does not contain any snapshots.")
                 .padding(.leading, VMSectionView.insetDeep)
                 .padding(.bottom, VMSectionView.bottomPadding)
                 .font(Font.system(size: 11))
         } else {
-            Table(snapshots, selection: $selectedSnapshotID) {
+            Table(image.snapshots, selection: $selectedSnapshotID) {
                 TableColumn("ID") { Text($0.id.description) }
                 TableColumn("Tag") { Text($0.tag) }
                 TableColumn("Creation date") { Text($0.creationDate.formatted()) }
             }
-            .frame(height: CGFloat(snapshots.count) * 24 + 24 + 33)
+            .frame(height: CGFloat(image.snapshots.count) * 24 + 24 + 33)
             .padding(.bottom, VMSectionView.bottomPadding)
             .scrollDisabled(true)
             .contextMenu {
@@ -87,12 +85,15 @@ struct VMImageView: View {
         return {
             if let snapshot = image.snapshots.first(where: { $0.id == snapshotID }) {
                 image.removeSnapshot(snapshot)
+                self.selectedSnapshotID = nil
             }
         }
     }
     
     private func addSnapshot(toImage image: VMImage) -> () -> () {{
         image.createSnapshot()
+        let lastSnapshotID = image.snapshots.last?.id
+        self.selectedSnapshotID = lastSnapshotID
     }}
 }
 

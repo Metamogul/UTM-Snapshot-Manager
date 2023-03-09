@@ -7,19 +7,20 @@
 
 import Foundation
 
-struct VMSnapshot {
+struct VMSnapshot: Identifiable {
     let id: UInt
     let tag: String
     let creationDate: Date
 }
 
-struct VMImage {
+struct VMImage: Identifiable {
     private static let snapshotLinePattern = /^\d+.*?\n/.anchorsMatchLineEndings()
     private static let idPattern = /^\d+/
     private static let tagPattern = /^\d+\s+(?<tag>.*?)\s/
     private static let dateTimePattern = /\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/
     
     let url: URL
+    var id: Int { self.url.hashValue }
     var snapshots: [VMSnapshot] {
         guard let imageInfo = QemuImg.infoForImage(self) else {
             return []
@@ -84,8 +85,13 @@ struct VMImage {
     }
 }
 
-struct VM : Codable {
+struct VM : Codable, Identifiable, Equatable {
+    static func == (lhs: VM, rhs: VM) -> Bool {
+        return lhs.id == rhs.id;
+    }
+    
     let url: URL
+    var id: Int { self.url.hashValue }
     var images: [VMImage] {
         return FileManager.qcow2FileURLsAt(url)
             .filter { FileManager.isValidQcow2ImageUrl($0) }

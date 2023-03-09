@@ -8,26 +8,66 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct Purchase: Identifiable {
-    let price: Decimal
-    let id = UUID()
-}
-
 struct VMGroupDetailsView: View {
     @Binding var vmGroup: VMGroup
-    
-    let currencyStyle = Decimal.FormatStyle.Currency(code: "USD")
 
-    
     var body: some View {
-        Text("vmGroup \(vmGroup.name): \(vmGroup.vms.description)")
-            .padding()
-        Button("removeVM", action: removeLastVM)
-        Button("addVM", action: addVMs)
+        List {
+            ForEach($vmGroup.vms) { $vm in
+                Section(header: Text(vm.url.lastPathComponent)) {
+                    VStack {
+                        ForEach(vm.images) { image in
+                            let snaphots = image.snapshots
+                            Label(image.url.lastPathComponent, systemImage: "externaldrive")
+                                .frame(maxWidth: .infinity, alignment: Alignment.leading)
+                                .font(Font.system(size: 11))
+                                .padding(.leading, 15)
+                            Table(of: VMSnapshot.self) {
+                                TableColumn("ID") { Text($0.id.description) }
+                                TableColumn("Tag") { Text($0.tag) }
+                                TableColumn("Creation date") { Text($0.creationDate.formatted()) }
+                            } rows: {
+                                ForEach(snaphots) { TableRow($0) }
+                            }
+                            .frame(height: CGFloat(snaphots.count) * 28 + 28)
+                            .padding(.bottom, 10)
+                            .scrollDisabled(true)
+                        }
+                        Button("Remove VM", action: removeVM(vm))
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .padding(.trailing, 11)
+                            .buttonStyle(RemoveButtonStyle())
+                    }
+                    .padding(.top, 12)
+                }
+            }
+        }
+        .id(self.vmGroup)
+        .toolbar {
+            ToolbarItemGroup(placement: .principal) {
+                Button(action: popSnapshot) {
+                    Label("Remove latest snapshot", systemImage: "rectangle.stack.badge.minus")
+                }
+                .help("Remove the latest snapshot for all VMs in group")
+                Button(action: pushSnapshot) {
+                    Label("Create new snapshot", systemImage: "rectangle.stack.badge.plus")
+                }
+                .help("Create a new snapshot for all VMs in group")
+            }
+            ToolbarItem(placement: .secondaryAction) {
+                Button(action: addVMs) {
+                    Label("Create new snapshot", systemImage: "plus")
+                }
+                .help("Add more VMs")
+            }
+        }
+        .navigationTitle(vmGroup.name)
     }
     
-    private func removeLastVM() {
-        _ = vmGroup.vms.popLast()
+    private func removeVM(_ vm: VM) -> () -> () {
+        return {
+            vmGroup.vms.removeAll { $0 == vm }
+        }
     }
     
     private func addVMs() {
@@ -55,6 +95,26 @@ struct VMGroupDetailsView: View {
             }
             
             vmGroup.vms.append( VM(validatedUrl: url))
+        }
+    }
+    
+    private func pushSnapshot() {
+        
+    }
+    
+    private func popSnapshot() {
+        
+    }
+    
+    private struct RemoveButtonStyle: ButtonStyle {
+        func makeBody(configuration: Self.Configuration) -> some View {
+            configuration.label
+                .padding([.trailing, .leading], 9)
+                .padding([.top, .bottom], 5)
+                .foregroundColor(configuration.isPressed ? Color.white : Color.pink)
+                .background(configuration.isPressed ? Color.pink : Color.pink.opacity(0.2))
+                .cornerRadius(6.0)
+                .clipShape(ContainerRelativeShape())
         }
     }
 }

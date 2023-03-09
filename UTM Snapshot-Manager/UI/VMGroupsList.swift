@@ -25,7 +25,18 @@ struct VMGroupsList: View {
                         Label(vmGroup.name, systemImage: "rectangle.on.rectangle")
                     }
                     .contextMenu {
-                        Button("Remove", action: self.removeGroup(vmGroup))
+                        Button(action: self.removeGroup(vmGroup)) {
+                            Label("Remove", systemImage: "trash")
+                                .labelStyle(.titleAndIcon)
+                        }
+                        Divider()
+                        Button {
+                            
+                        } label: {
+                            Label("Rename", systemImage: "character.cursor.ibeam")
+                                .labelStyle(.titleAndIcon)
+                        }
+
                     }
                 }
                 Button(action: presentNewGroupPopover) {

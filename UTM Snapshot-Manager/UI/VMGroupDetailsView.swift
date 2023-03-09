@@ -95,7 +95,10 @@ struct VMGroupDetailsViewPreviewWrapper<VMGroup, Content: View>: View {
 struct VMGroupDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         if let vmGroup = UserSettings().vmGroups.first {
-            VMGroupDetailsViewPreviewWrapper(vmGroup: vmGroup) { VMGroupDetailsView(vmGroup: $0) }
+            VMGroupDetailsViewPreviewWrapper(vmGroup: vmGroup) {
+                VMGroupDetailsView(vmGroup: $0)
+                    .frame(minHeight: 800)
+            }
         }
         
     }

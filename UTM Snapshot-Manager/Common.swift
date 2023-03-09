@@ -13,7 +13,11 @@ struct VMSnapshot: Identifiable {
     let creationDate: Date
 }
 
-struct VMImage: Identifiable {
+struct VMImage: Identifiable, Equatable {
+    static func == (lhs: VMImage, rhs: VMImage) -> Bool {
+        return lhs.id == rhs.id;
+    }
+    
     private static let snapshotLinePattern = /^\d+.*?\n/.anchorsMatchLineEndings()
     private static let idPattern = /^\d+/
     private static let tagPattern = /^\d+\s+(?<tag>.*?)\s/

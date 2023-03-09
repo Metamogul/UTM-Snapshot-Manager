@@ -10,55 +10,98 @@ import UniformTypeIdentifiers
 
 struct VMGroupDetailsView: View {
     @Binding var vmGroup: VMGroup
+    
+    private static let bottomPadding: CGFloat = 10
+    private static let insetNormal: CGFloat = 15
+    private static let insetDeep: CGFloat = 18
 
     var body: some View {
         List {
             ForEach($vmGroup.vms) { $vm in
-                Section(header: Text(vm.url.lastPathComponent)) {
-                    VStack {
-                        ForEach(vm.images) { image in
-                            let snaphots = image.snapshots
-                            Label(image.url.lastPathComponent, systemImage: "externaldrive")
-                                .frame(maxWidth: .infinity, alignment: Alignment.leading)
-                                .font(Font.system(size: 11))
-                                .padding(.leading, 15)
-                            Table(of: VMSnapshot.self) {
-                                TableColumn("ID") { Text($0.id.description) }
-                                TableColumn("Tag") { Text($0.tag) }
-                                TableColumn("Creation date") { Text($0.creationDate.formatted()) }
-                            } rows: {
-                                ForEach(snaphots) { TableRow($0) }
-                            }
-                            .frame(height: CGFloat(snaphots.count) * 28 + 28)
-                            .padding(.bottom, 10)
-                            .scrollDisabled(true)
+                Section {
+                    VStack(alignment: .leading, spacing: 0) {
+                        if vm.images.count == 0 {
+                            Text("This VM does not contain any images.")
+                                .padding(.leading, Self.insetNormal)
+                                .padding(.bottom, Self.bottomPadding)
                         }
-                        Button("Remove VM", action: removeVM(vm))
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .padding(.trailing, 11)
-                            .buttonStyle(RemoveButtonStyle())
+                        ForEach(vm.images) { image in
+                            Label(image.url.lastPathComponent, systemImage: "externaldrive")
+                                .foregroundColor(Color.black.opacity(0.6))
+                                .padding(.leading, Self.insetNormal)
+                                .padding(.bottom, Self.bottomPadding / 2)
+                                .padding(.top, Self.bottomPadding / 2)
+                            
+                            let snaphots = image.snapshots
+                            if snaphots.count == 0 {
+                                Text("This image does not contain any snapshots.")
+                                    .padding(.leading, Self.insetDeep)
+                                    .padding(.bottom, Self.bottomPadding)
+                                    .font(Font.system(size: 11))
+                            } else {
+                                Table(of: VMSnapshot.self) {
+                                    TableColumn("ID") { Text($0.id.description) }
+                                    TableColumn("Tag") { Text($0.tag) }
+                                    TableColumn("Creation date") { Text($0.creationDate.formatted()) }
+                                } rows: {
+                                    ForEach(snaphots) { TableRow($0) }
+                                }
+                                .frame(height: CGFloat(snaphots.count) * 28 + 26)
+                                .padding(.bottom, Self.bottomPadding)
+                                .scrollDisabled(true)
+                            }
+                            if vm.images.last != image {
+                                if vm.images.last?.snapshots.count ?? 0 > 0 {
+                                    Divider()
+                                        .padding(.bottom, Self.bottomPadding + 4)
+                                } else {
+                                    Divider()
+                                        .padding(.leading, Self.insetDeep)
+                                        .padding(.bottom, Self.bottomPadding + 4)
+                                }
+                            }
+                        }
+                        if vmGroup.vms.last != vm {
+                            Divider()
+                                .padding(.leading, Self.insetNormal)
+                                .padding(.bottom, Self.bottomPadding)
+                        }
                     }
-                    .padding(.top, 12)
+                } header: {
+                    HStack {
+                        Button(action: removeVM(vm)) {
+                            Label("Remove VM", systemImage: "trash")
+                                .labelStyle(.iconOnly)
+                        }
+                        .padding(6)
+                        .buttonStyle(RemoveButtonStyle())
+                        Text(vm.url.lastPathComponent)
+                            .font(Font.system(size: 13, weight: Font.Weight.medium))
+                            .foregroundColor(Color.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                    }
                 }
             }
         }
         .id(self.vmGroup)
         .toolbar {
             ToolbarItemGroup(placement: .principal) {
+                Button(action: addVMs) {
+                    Label("Add more VMs", systemImage: "plus")
+                }
+                .help("Add more VMs to this group")
+                
+                Spacer(minLength: 10)
+                
                 Button(action: popSnapshot) {
                     Label("Remove latest snapshot", systemImage: "rectangle.stack.badge.minus")
                 }
-                .help("Remove the latest snapshot for all VMs in group")
+                .help("Remove the latest snapshot for all images in this group")
                 Button(action: pushSnapshot) {
                     Label("Create new snapshot", systemImage: "rectangle.stack.badge.plus")
                 }
-                .help("Create a new snapshot for all VMs in group")
-            }
-            ToolbarItem(placement: .secondaryAction) {
-                Button(action: addVMs) {
-                    Label("Create new snapshot", systemImage: "plus")
-                }
-                .help("Add more VMs")
+                .help("Create a new snapshot for all images in this group")
             }
         }
         .navigationTitle(vmGroup.name)
@@ -115,6 +158,8 @@ struct VMGroupDetailsView: View {
                 .background(configuration.isPressed ? Color.pink : Color.pink.opacity(0.2))
                 .cornerRadius(6.0)
                 .clipShape(ContainerRelativeShape())
+                .font(Font.system(size: 11, weight: Font.Weight.regular))
+                .fontWeight(Font.Weight.regular)
         }
     }
 }

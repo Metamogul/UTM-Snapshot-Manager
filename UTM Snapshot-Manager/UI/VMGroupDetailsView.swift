@@ -73,7 +73,7 @@ struct VMGroupDetailsView: View {
     }
     
     private func pushSnapshot() {
-        for vm in self.vmGroup.vms {
+        for vm in self.vmGroup.vms.filter({ FileManager.isValidUTMPackageUrl($0.url) }) {
             for image in vm.images {
                 image.createSnapshot()
             }
@@ -81,7 +81,7 @@ struct VMGroupDetailsView: View {
     }
     
     private func popSnapshot() {
-        for vm in self.vmGroup.vms {
+        for vm in self.vmGroup.vms.filter({ FileManager.isValidUTMPackageUrl($0.url) }) {
             for image in vm.images {
                 if let latestSnapshot = image.snapshots.last {
                     image.removeSnapshot(latestSnapshot)
@@ -91,7 +91,7 @@ struct VMGroupDetailsView: View {
     }
     
     private func restoreLatestSnapshot() {
-        for vm in self.vmGroup.vms {
+        for vm in self.vmGroup.vms.filter({ FileManager.isValidUTMPackageUrl($0.url) }) {
             for image in vm.images {
                 if let latestSnapshot = image.snapshots.last {
                     image.restoreSnapshot(latestSnapshot)

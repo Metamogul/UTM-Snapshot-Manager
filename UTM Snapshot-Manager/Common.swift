@@ -18,74 +18,13 @@ struct VMImage: Identifiable, Equatable {
         return lhs.id == rhs.id;
     }
     
-    private static let snapshotLinePattern = /^\d+.*?\n/.anchorsMatchLineEndings()
-    private static let idPattern = /^\d+/
-    private static let tagPattern = /^\d+\s+(?<tag>.*?)\s/
-    private static let dateTimePattern = /\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/
-    
     let url: URL
     var id: Int { self.url.hashValue }
-    var snapshots: [VMSnapshot] {
-        guard let imageInfo = QemuImg.infoForImage(self) else {
-            return []
-        }
-        
-        guard imageInfo.contains("Snapshot list:") else {
-            return []
-        }
-        
-        var snapshots: [VMSnapshot] = []
-        for match in imageInfo.matches(of: VMImage.snapshotLinePattern) {
-            guard let snapshot = VMImage.snapshotFromString(match.output.description) else {
-                continue
-            }
-            
-            snapshots.append(snapshot)
-        }
-        
-        return snapshots
-    }
+    var snapshots: [VMSnapshot]
     
     init(validatedURL: URL) {
         self.url = validatedURL
-    }
-    
-    private static func snapshotFromString(_ snapshotString: String) -> VMSnapshot? {
-        guard let id = self.idFromString(snapshotString),
-              let tag = self.tagFromString(snapshotString),
-              let creationDate = self.creationDateFromString(snapshotString)
-        else {
-            return nil;
-        }
-        
-        return VMSnapshot(id: id, tag: tag, creationDate: creationDate)
-    }
-    
-    private static func idFromString(_ snapshotString: String) -> UInt? {
-        guard let idString = try? VMImage.idPattern.firstMatch(in: snapshotString)?.description else {
-            return nil
-        }
-        
-        return UInt(idString)
-    }
-    
-    private static func tagFromString(_ snapshotString: String) -> String? {
-        guard let tagString = try? VMImage.tagPattern.firstMatch(in: snapshotString)?.tag.description else {
-            return nil
-        }
-        
-        return tagString
-    }
-    
-    private static func creationDateFromString(_ snapshotString: String) -> Date? {
-        guard let dateTimeString = try? VMImage.dateTimePattern.firstMatch(in: snapshotString)?.description else {
-            return nil
-        }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy'-'MM'-'dd' 'HH'-'mm'-'ss"
-        
-        return dateFormatter.date(from: dateTimeString)
+        self.snapshots = QemuImg.snapshotsForImageUrl(self.url)
     }
 }
 

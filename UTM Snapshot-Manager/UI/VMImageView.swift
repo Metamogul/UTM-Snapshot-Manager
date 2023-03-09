@@ -11,7 +11,8 @@ struct VMImageView: View {
     var vm: VM
     var image: VMImage
     
-    @State private var selectedSnapshot: VMSnapshot = VMSnapshot(id: 0, tag: "", creationDate: Date.now)
+    @State private var selectedSnapshotID: VMSnapshot.ID?
+    //StateObject private var snapshots: [VMSnapshot]
     
     var body: some View {
         Label(image.url.lastPathComponent, systemImage: "externaldrive")
@@ -20,25 +21,23 @@ struct VMImageView: View {
             .padding(.bottom, VMSectionView.bottomPadding / 2)
             .padding(.top, VMSectionView.bottomPadding / 2)
         
-        let snaphots = image.snapshots
-        if snaphots.count == 0 {
+        let snapshots = image.snapshots
+        if snapshots.count == 0 {
             Text("This image does not contain any snapshots.")
                 .padding(.leading, VMSectionView.insetDeep)
                 .padding(.bottom, VMSectionView.bottomPadding)
                 .font(Font.system(size: 11))
         } else {
-            Table(of: VMSnapshot.self) {
+            Table(snapshots, selection: $selectedSnapshotID) {
                 TableColumn("ID") { Text($0.id.description) }
                 TableColumn("Tag") { Text($0.tag) }
                 TableColumn("Creation date") { Text($0.creationDate.formatted()) }
-            } rows: {
-                ForEach(snaphots) { TableRow($0) }
             }
-            .frame(height: CGFloat(snaphots.count) * 28 + 26)
+            .frame(height: CGFloat(snapshots.count) * 24 + 24 + 33)
             .padding(.bottom, VMSectionView.bottomPadding)
             .scrollDisabled(true)
             .contextMenu {
-                Button(action: removeSnapshot(selectedSnapshot, fromImage: image)) {
+                Button(action: removeSnapshot(snapshotID: selectedSnapshotID, fromImage: image)) {
                     Label("Remove", systemImage: "trash")
                         .labelStyle(.titleAndIcon)
                 }
@@ -56,16 +55,20 @@ struct VMImageView: View {
         }
     }
     
-    private func removeSnapshot(_ snapshot: VMSnapshot, fromImage iamge: VMImage) -> () -> () {
+    private func removeSnapshot(snapshotID: VMSnapshot.ID?, fromImage image: VMImage) -> () -> () {
+        guard let snapshotID = snapshotID else {
+            return {}
+        }
+        
         return {
-            // TODO: Stub, implement
+            NSLog(snapshotID.description)
         }
     }
 }
 
 struct VMImageView_Previews: PreviewProvider {
     static var previews: some View {
-        if let vm = UserSettings().vmGroups.first?.vms.first,
+        if let vm = UserSettings().vmGroups.last?.vms.first,
            let image = vm.images.first {
             VMImageView(vm: vm, image: image)
         }

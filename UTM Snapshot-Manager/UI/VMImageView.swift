@@ -37,10 +37,22 @@ struct VMImageView: View {
             .padding(.bottom, VMSectionView.bottomPadding)
             .scrollDisabled(true)
             .contextMenu {
-                Button(action: removeSnapshot(snapshotID: selectedSnapshotID, fromImage: image)) {
-                    Label("Remove", systemImage: "trash")
-                        .labelStyle(.titleAndIcon)
+                if selectedSnapshotID != nil {
+                    Button(action: restoreSnapshot(snapshotID: selectedSnapshotID, atImage: image)) {
+                        Label("Restore", systemImage: "gobackward")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    Button(action: removeSnapshot(snapshotID: selectedSnapshotID, fromImage: image)) {
+                        Label("Remove", systemImage: "trash")
+                            .labelStyle(.titleAndIcon)
+                    }
+                } else {
+                    Button(action: addSnapshot(toImage: image)) {
+                        Label("Add", systemImage: "rectangle.stack.badge.plus")
+                            .labelStyle(.titleAndIcon)
+                    }
                 }
+                
             }
         }
         if vm.images.last != image {
@@ -55,15 +67,33 @@ struct VMImageView: View {
         }
     }
     
+    private func restoreSnapshot(snapshotID: VMSnapshot.ID?, atImage image: VMImage) -> () -> () {
+        guard let snapshotID = snapshotID else {
+            return {}
+        }
+        
+        return {
+            if let snapshot = image.snapshots.first(where: { $0.id == snapshotID }) {
+                image.restoreSnapshot(snapshot)
+            }
+        }
+    }
+    
     private func removeSnapshot(snapshotID: VMSnapshot.ID?, fromImage image: VMImage) -> () -> () {
         guard let snapshotID = snapshotID else {
             return {}
         }
         
         return {
-            NSLog(snapshotID.description)
+            if let snapshot = image.snapshots.first(where: { $0.id == snapshotID }) {
+                image.removeSnapshot(snapshot)
+            }
         }
     }
+    
+    private func addSnapshot(toImage image: VMImage) -> () -> () {{
+        image.createSnapshot()
+    }}
 }
 
 struct VMImageView_Previews: PreviewProvider {

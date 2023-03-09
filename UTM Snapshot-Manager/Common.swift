@@ -54,14 +54,30 @@ struct VM : Identifiable, Codable, Equatable {
     
     let url: URL
     var id: Int { self.url.hashValue }
-    var images: [VMImage] {
-        return FileManager.qcow2FileURLsAt(url)
-            .filter { FileManager.isValidQcow2ImageUrl($0) }
-            .map { VMImage(validatedURL: $0) }
+    let images: [VMImage]
+    
+    private enum CodingKeys: String, CodingKey {
+        case url
     }
     
     init(validatedUrl: URL) {
         self.url = validatedUrl
+        self.images = FileManager.qcow2FileURLsAt(url)
+            .filter { FileManager.isValidQcow2ImageUrl($0) }
+            .map { VMImage(validatedURL: $0) }
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.url = try container.decode(URL.self, forKey: .url)
+        self.images = FileManager.qcow2FileURLsAt(url)
+            .filter { FileManager.isValidQcow2ImageUrl($0) }
+            .map { VMImage(validatedURL: $0) }
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.url, forKey: .url)
     }
 }
 

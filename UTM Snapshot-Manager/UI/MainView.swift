@@ -18,14 +18,8 @@ struct MainView: View {
             VMGroupsList()
                 .environmentObject(userSettings)
         } detail: {
-            VStack {
-                Button {
-                    self.createDemoVMGroup()
-                } label: {
-                    Text("Create demo VM group")
-                }
-            }
-            
+            Text("Please select a VM group on the left to display and edit the contained VMs, images and snapshots.")
+                .padding()
         }
     }
     

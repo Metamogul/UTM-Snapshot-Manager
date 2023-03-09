@@ -15,6 +15,7 @@ struct UTMSnapshotManagerApp: App {
                 .onDisappear() {
                     terminateApp()
                 }
+                .frame(minWidth: 600, minHeight: 150)
         }
     }
     

@@ -39,7 +39,11 @@ class QemuImg {
                 continue
             }
             
-            snapshots.append(snapshot)
+            // "suspend" is a reserved name for UTM suspension snapshots
+            if (snapshot.tag != "suspend") {
+                snapshots.append(snapshot)
+            }
+            
         }
         
         return snapshots

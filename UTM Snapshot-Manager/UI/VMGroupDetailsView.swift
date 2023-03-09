@@ -27,6 +27,10 @@ struct VMGroupDetailsView: View {
                 
                 Spacer(minLength: 10)
                 
+                Button(action: restoreLatestSnapshot) {
+                    Label("Restore latest snapshot", systemImage: "gobackward")
+                }
+                .help("Restore the latest snapshot for all images in this group")
                 Button(action: popSnapshot) {
                     Label("Remove latest snapshot", systemImage: "rectangle.stack.badge.minus")
                 }
@@ -69,11 +73,31 @@ struct VMGroupDetailsView: View {
     }
     
     private func pushSnapshot() {
-        
+        for vm in self.vmGroup.vms {
+            for image in vm.images {
+                image.createSnapshot()
+            }
+        }
     }
     
     private func popSnapshot() {
-        
+        for vm in self.vmGroup.vms {
+            for image in vm.images {
+                if let latestSnapshot = image.snapshots.last {
+                    image.removeSnapshot(latestSnapshot)
+                }
+            }
+        }
+    }
+    
+    private func restoreLatestSnapshot() {
+        for vm in self.vmGroup.vms {
+            for image in vm.images {
+                if let latestSnapshot = image.snapshots.last {
+                    image.restoreSnapshot(latestSnapshot)
+                }
+            }
+        }
     }
 }
 

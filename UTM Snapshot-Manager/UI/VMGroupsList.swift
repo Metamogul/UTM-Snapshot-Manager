@@ -9,40 +9,23 @@ import SwiftUI
 
 struct VMGroupsList: View {
     @EnvironmentObject private var userSettings: UserSettings
-    @State private var presentingNewGroupPopover: Bool = false
-    @State private var newGroupName: String = ""
-    
+    @State private var presentingNewGroupSheet = false
+    @State private var newGroupName = ""
     
     var body: some View {
         List {
-            Section(header: Text(LocalizedStringKey("VM Groups"))) {
+            Section(header: Text(LocalizedStringKey("VM groups"))) {
                 ForEach($userSettings.vmGroups) { $vmGroup in
-                    NavigationLink(destination: VMGroupDetailsView(vmGroup: $vmGroup)) {
-                        Label(vmGroup.name, systemImage: "rectangle.on.rectangle")
-                    }
-                    .contextMenu {
-                        Button(action: self.removeGroup(vmGroup)) {
-                            Label(LocalizedStringKey("Remove"), systemImage: "trash")
-                                .labelStyle(.titleAndIcon)
-                        }
-                        Divider()
-                        Button {
-                            
-                        } label: {
-                            Label(LocalizedStringKey("Rename"), systemImage: "character.cursor.ibeam")
-                                .labelStyle(.titleAndIcon)
-                        }
-
-                    }
+                    VMGroupsListEntry(vmGroup: $vmGroup)
                 }
-                Button(action: presentNewGroupPopover) {
+                Button(action: presentNewGroupSheet) {
                     Label(LocalizedStringKey("New…"), systemImage: "plus")
                 }
                 .buttonStyle(.plain )
-                .popover(isPresented: self.$presentingNewGroupPopover) {
-                    VStack {
-                        TextField(LocalizedStringKey("Name"), text: self.$newGroupName)
-                            .frame(minWidth: 100)
+                .sheet(isPresented: self.$presentingNewGroupSheet) {
+                    Form {
+                        TextField(LocalizedStringKey("Name:"), text: self.$newGroupName)
+                            .frame(minWidth: 150)
                         Button(LocalizedStringKey("Create"), action: createNewGroup)
                             .keyboardShortcut(.defaultAction)
                             .frame(maxWidth: .infinity, alignment: .trailing)
@@ -54,20 +37,65 @@ struct VMGroupsList: View {
         .frame(minWidth: 0)
     }
     
-    private func presentNewGroupPopover() {
+    private func presentNewGroupSheet() {
         self.newGroupName = ""
-        self.presentingNewGroupPopover = true
+        self.presentingNewGroupSheet = true
     }
     
     private func createNewGroup() {
-        self.presentingNewGroupPopover = false;
+        self.presentingNewGroupSheet = false;
         userSettings.vmGroups.append(VMGroup(name: !self.newGroupName.isEmpty ? self.newGroupName : NSLocalizedString("NewGroup", comment: "Default name for new group")))
     }
+}
+
+struct VMGroupsListEntry: View {
+    @EnvironmentObject private var userSettings: UserSettings
+    @Binding var vmGroup: VMGroup
+    @State private var presentingRenameGroupSheet = false
+    @State private var newGroupName = ""
     
-    private func removeGroup(_ vmGroup: VMGroup) -> () -> () {
-        return {
-            userSettings.vmGroups.removeAll(where: { $0.id == vmGroup.id })
+    var body: some View {
+        NavigationLink(destination: VMGroupDetailsView(vmGroup: $vmGroup)) {
+            Label(vmGroup.name, systemImage: "rectangle.on.rectangle")
         }
+        .contextMenu {
+            Button(action: removeGroup) {
+                Label(LocalizedStringKey("Remove"), systemImage: "trash")
+                    .labelStyle(.titleAndIcon)
+            }
+            Divider()
+            Button(action: presentRenameGroupSheet ) {
+                Label(LocalizedStringKey("Rename"), systemImage: "character.cursor.ibeam")
+                    .labelStyle(.titleAndIcon)
+            }
+        }
+        .sheet(isPresented: $presentingRenameGroupSheet) {
+            Form {
+                TextField(LocalizedStringKey("New name:"), text: $newGroupName)
+                    .frame(minWidth: 150)
+                Button(LocalizedStringKey("Rename"), action: renameGroup )
+                    .keyboardShortcut(.defaultAction)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+            }
+            .padding()
+        }
+
+    }
+    
+    private func presentRenameGroupSheet() {
+        self.newGroupName = self.vmGroup.name
+        self.presentingRenameGroupSheet = true
+    }
+    
+    private func renameGroup() {
+        if !newGroupName.isEmpty {
+            vmGroup.name = newGroupName
+        }
+        self.presentingRenameGroupSheet = false
+    }
+    
+    private func removeGroup() {
+        userSettings.vmGroups.removeAll(where: { $0.id == self.vmGroup.id })
     }
 }
 

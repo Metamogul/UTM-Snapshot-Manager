@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
-  <file original="UTM Snapshot-Manager/en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="de">
+  <file original="UTM Snapshot-Manager/en.lproj/Localizable.strings" source-language="en" target-language="de" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="14.2" build-num="14C18"/>
     </header>
@@ -45,9 +45,14 @@
         <target>ID</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Name" xml:space="preserve">
-        <source>Name</source>
-        <target>Name</target>
+      <trans-unit id="Name:" xml:space="preserve">
+        <source>Name:</source>
+        <target>Name:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New name:" xml:space="preserve">
+        <source>New name:</source>
+        <target>Neuer Name:</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="NewGroup" xml:space="preserve">
@@ -130,8 +135,8 @@
         <target>Dieses Image enthält keine Snapshots.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="VM Groups" xml:space="preserve">
-        <source>VM Groups</source>
+      <trans-unit id="VM groups" xml:space="preserve">
+        <source>VM groups</source>
         <target>VM-Gruppen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
@@ -144,6 +149,7 @@
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">
         <source>UTM Snapshot-Manager</source>
+        <target>UTM Snapshot-Manager</target>
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">

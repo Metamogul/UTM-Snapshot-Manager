@@ -23,7 +23,10 @@
 "ID" = "ID";
 
 /* No comment provided by engineer. */
-"Name" = "Name";
+"Name:" = "Name:";
+
+/* No comment provided by engineer. */
+"New name:" = "Neuer Name:";
 
 /* No comment provided by engineer. */
 "New…" = "Neu…";
@@ -74,5 +77,5 @@
 "This VM wasn't found. Has it been moved, removed or renamed?" = "VM nicht gefunden. Wurde sie umbenannt, verschoben oder gelöscht?";
 
 /* No comment provided by engineer. */
-"VM Groups" = "VM-Gruppen";
+"VM groups" = "VM-Gruppen";
 

@@ -45,9 +45,14 @@
         <target>ID</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Name" xml:space="preserve">
-        <source>Name</source>
-        <target>Name</target>
+      <trans-unit id="Name:" xml:space="preserve">
+        <source>Name:</source>
+        <target>Name:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New name:" xml:space="preserve">
+        <source>New name:</source>
+        <target>New name:</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="NewGroup" xml:space="preserve">
@@ -130,9 +135,9 @@
         <target>This image does not contain any snapshots.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="VM Groups" xml:space="preserve">
-        <source>VM Groups</source>
-        <target>VM Groups</target>
+      <trans-unit id="VM groups" xml:space="preserve">
+        <source>VM groups</source>
+        <target>VM groups</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

@@ -37,11 +37,11 @@ struct VMImageView: View {
             .contextMenu {
                 if selectedSnapshotID != nil {
                     Button(action: restoreSnapshot(snapshotID: selectedSnapshotID, atImage: image)) {
-                        Label(LocalizedStringKey("Restore Snapshot"), systemImage: "gobackward")
+                        Label(LocalizedStringKey("Restore Snapshot"), systemImage: "clock.arrow.circlepath")
                             .labelStyle(.titleAndIcon)
                     }
                     Button(action: removeSnapshot(snapshotID: selectedSnapshotID, fromImage: image)) {
-                        Label(LocalizedStringKey("Remove Snapshot"), systemImage: "trash")
+                        Label(LocalizedStringKey("Remove Snapshot"), systemImage: "minus.circle")
                             .labelStyle(.titleAndIcon)
                     }
                 } else {

@@ -52,7 +52,7 @@ struct SnapshotManagerDialogModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .confirmationDialog(title, isPresented: $presentingDialog) {
-                Button(mainButtonTitle, action: mainButtonActionAndDismissDialog)
+                Button(mainButtonTitle, role: mainButtonRole, action: mainButtonActionAndDismissDialog)
                     .keyboardShortcut(.defaultAction)
             }
     }

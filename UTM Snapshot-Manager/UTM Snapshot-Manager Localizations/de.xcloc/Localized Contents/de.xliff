@@ -160,6 +160,11 @@
         <target>Tag für neuen Snapshot:</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="There are no VMs in this group so far. Use the + button in the navigation area of the menu bar to add VMs." xml:space="preserve">
+        <source>There are no VMs in this group so far. Use the + button in the navigation area of the menu bar to add VMs.</source>
+        <target>In dieser Gruppe gibt es bisher noch keine VMs. Nutze den "+"-Button im Navigations-Bereich der Menüleiste, um VMs hinzuzufügen.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="This VM does not contain any images." xml:space="preserve">
         <source>This VM does not contain any images.</source>
         <target>Diese VM hat keine Images.</target>

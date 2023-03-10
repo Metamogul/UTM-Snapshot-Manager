@@ -92,6 +92,9 @@
 "Tag for new Snapshot:" = "Tag für neuen Snapshot:";
 
 /* No comment provided by engineer. */
+"There are no VMs in this group so far. Use the + button in the navigation area of the menu bar to add VMs." = "In dieser Gruppe gibt es bisher noch keine VMs. Nutze den \"+\"-Button im Navigations-Bereich der Menüleiste, um VMs hinzuzufügen.";
+
+/* No comment provided by engineer. */
 "This image does not contain any snapshots." = "Dieses Image enthält keine Snapshots.";
 
 /* No comment provided by engineer. */

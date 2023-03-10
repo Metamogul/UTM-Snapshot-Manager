@@ -45,6 +45,10 @@ struct VMSectionView: View {
                     Label(LocalizedStringKey("Remove VM"), systemImage: "trash")
                         .labelStyle(.iconOnly)
                 }
+                .snapshotManagerDialog(presentingDialog: $presentingShouldDeleteVMDialog,
+                                       title: LocalizedStringKey("Remove this VM from the group?"),
+                                       mainButtonTitle: LocalizedStringKey("Remove"),
+                                       mainButtonAction: removeVM(vm))
                 .padding(6)
                 .buttonStyle(RemoveButtonStyle())
                 Text(vm.url.lastPathComponent)
@@ -54,10 +58,6 @@ struct VMSectionView: View {
                 
             }
         }
-        .snapshotManagerDialog(presentingDialog: $presentingShouldDeleteVMDialog,
-                               title: LocalizedStringKey("Remove this VM from the group?"),
-                               mainButtonTitle: LocalizedStringKey("Remove"),
-                               mainButtonAction: removeVM(vm))
     }
     
     private func removeVM(_ vm: VM) -> () -> () {

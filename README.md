@@ -30,6 +30,10 @@ Feel free to contribute by creating a fork and issuing a pull request. When issu
 
 If you're part of the UTM development team and want to incorporate such functionality into UTM, let me know. I'd be glad to help.
 
+## Reporting a bug ##
+
+To report a bug, please [create an issue ticket](https://github.com/Metamogul/UTM-Snapshot-Manager/issues) for it. In the ticket please provide a description of the state of the app, the action you've been performing, the expected outcome and the actual outcome. Also include your system architecture (x86_64 or arm64), the MacOS version you're on, the XCode-Version you've been using as well as any other information that seems relevant to you.
+
 ## License ##
 
 This project is distributed under the permissive [Apache 2.0 license](https://github.com/Metamogul/UTM-Snapshot-Manager/blob/main/LICENSE) as included. It doesn't use any other source components, packages or libraries under different licenses (apart from Apple's own system frameworks).

@@ -1,0 +1,78 @@
+/* No comment provided by engineer. */
+"Add more VMs" = "VMs hinzufügen";
+
+/* No comment provided by engineer. */
+"Add more VMs to this group" = "VMs zur Gruppe hinzufügen";
+
+/* No comment provided by engineer. */
+"Add Snapshot" = "Neuer Snapshot";
+
+/* No comment provided by engineer. */
+"Create" = "Erstellen";
+
+/* No comment provided by engineer. */
+"Create a new snapshot for all images in this group" = "Erzeuge einen neuen Snapshot für alle Images in dieser Gruppe";
+
+/* No comment provided by engineer. */
+"Create new snapshot" = "Neuen Snapshot erzeugen";
+
+/* No comment provided by engineer. */
+"Creation date" = "Erstellungsdatum";
+
+/* No comment provided by engineer. */
+"ID" = "ID";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
+
+/* No comment provided by engineer. */
+"New…" = "Neu…";
+
+/* Default name for new group */
+"NewGroup" = "NeueGruppe";
+
+/* No comment provided by engineer. */
+"Please select a VM group on the left to display and edit the contained VMs, images and snapshots." = "Bitte wählen Sie eine VM-Gruppe in der Navigation aus, um deren VMs zu bearbeiten und die zugehörigen Snapshots zu bearbeiten.";
+
+/* No comment provided by engineer. */
+"Remove" = "Löschen";
+
+/* No comment provided by engineer. */
+"Remove latest snapshot" = "Jüngsten Snapshot löschen";
+
+/* No comment provided by engineer. */
+"Remove Snapshot" = "Snapshot Löschen";
+
+/* No comment provided by engineer. */
+"Remove the latest snapshot for all images in this group" = "Entferne den jüngsten Snapshot für alle Images in dieser Gruppe";
+
+/* No comment provided by engineer. */
+"Remove VM" = "VM löschen";
+
+/* No comment provided by engineer. */
+"Rename" = "Umbenennen";
+
+/* No comment provided by engineer. */
+"Restore latest snapshot" = "Jüngsten Snapshot wiederhstellen";
+
+/* No comment provided by engineer. */
+"Restore Snapshot" = "Snapshot wiederherstellen";
+
+/* No comment provided by engineer. */
+"Restore the latest snapshot for all images in this group" = "Stelle den jüngsten Snapshot für alle Images in dieser Gruppe wieder her";
+
+/* No comment provided by engineer. */
+"Tag" = "Tag";
+
+/* No comment provided by engineer. */
+"This image does not contain any snapshots." = "Dieses Image enthält keine Snapshots.";
+
+/* No comment provided by engineer. */
+"This VM does not contain any images." = "Diese VM hat keine Images.";
+
+/* No comment provided by engineer. */
+"This VM wasn't found. Has it been moved, removed or renamed?" = "VM nicht gefunden. Wurde sie umbenannt, verschoben oder gelöscht?";
+
+/* No comment provided by engineer. */
+"VM Groups" = "VM-Gruppen";
+

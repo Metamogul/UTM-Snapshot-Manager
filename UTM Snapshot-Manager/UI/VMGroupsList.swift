@@ -19,35 +19,35 @@ struct VMGroupsList: View {
     
     var body: some View {
         List {
-            Section(header: Text("VM Groups")) {
+            Section(header: Text(LocalizedStringKey("VM Groups"))) {
                 ForEach($userSettings.vmGroups) { $vmGroup in
                     NavigationLink(destination: VMGroupDetailsView(vmGroup: $vmGroup)) {
                         Label(vmGroup.name, systemImage: "rectangle.on.rectangle")
                     }
                     .contextMenu {
                         Button(action: self.removeGroup(vmGroup)) {
-                            Label("Remove", systemImage: "trash")
+                            Label(LocalizedStringKey("Remove"), systemImage: "trash")
                                 .labelStyle(.titleAndIcon)
                         }
                         Divider()
                         Button {
                             
                         } label: {
-                            Label("Rename", systemImage: "character.cursor.ibeam")
+                            Label(LocalizedStringKey("Rename"), systemImage: "character.cursor.ibeam")
                                 .labelStyle(.titleAndIcon)
                         }
 
                     }
                 }
                 Button(action: presentNewGroupPopover) {
-                    Label("New…", systemImage: "plus")
+                    Label(LocalizedStringKey("New…"), systemImage: "plus")
                 }
                 .buttonStyle(.plain )
                 .popover(isPresented: self.$presentingNewGroupPopover) {
                     VStack {
-                        TextField("Name", text: self.$newGroupName)
+                        TextField(LocalizedStringKey("Name"), text: self.$newGroupName)
                             .frame(minWidth: 100)
-                        Button("Create", action: createNewGroup)
+                        Button(LocalizedStringKey("Create"), action: createNewGroup)
                             .keyboardShortcut(.defaultAction)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
@@ -65,7 +65,7 @@ struct VMGroupsList: View {
     
     private func createNewGroup() {
         self.presentingNewGroupPopover = false;
-        userSettings.vmGroups.append(VMGroup(name: !self.newGroupName.isEmpty ? self.newGroupName : "New Group"))
+        userSettings.vmGroups.append(VMGroup(name: !self.newGroupName.isEmpty ? self.newGroupName : NSLocalizedString("NewGroup", comment: "Default name for new group")))
     }
     
     private func removeGroup(_ vmGroup: VMGroup) -> () -> () {

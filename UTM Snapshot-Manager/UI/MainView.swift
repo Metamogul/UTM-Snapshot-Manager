@@ -18,7 +18,7 @@ struct MainView: View {
             VMGroupsList()
                 .environmentObject(userSettings)
         } detail: {
-            Text("Please select a VM group on the left to display and edit the contained VMs, images and snapshots.")
+            Text(LocalizedStringKey("Please select a VM group on the left to display and edit the contained VMs, images and snapshots."))
                 .padding()
         }
     }

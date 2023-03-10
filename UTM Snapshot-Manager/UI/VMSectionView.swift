@@ -19,12 +19,12 @@ struct VMSectionView: View {
         Section {
             VStack(alignment: .leading, spacing: 0) {
                 if !FileManager.isValidUTMPackageUrl(vm.url) {
-                    Text("This VM wasn't found. Has it been moved, removed or renamed?")
+                    Text(LocalizedStringKey("This VM wasn't found. Has it been moved, removed or renamed?"))
                         .padding(.leading, Self.insetNormal)
                         .padding(.bottom, Self.bottomPadding)
                 }
                 if FileManager.isValidUTMPackageUrl(vm.url) && vm.images.count == 0 {
-                    Text("This VM does not contain any images.")
+                    Text(LocalizedStringKey("This VM does not contain any images."))
                         .padding(.leading, Self.insetNormal)
                         .padding(.bottom, Self.bottomPadding)
                 }
@@ -40,7 +40,7 @@ struct VMSectionView: View {
         } header: {
             HStack {
                 Button(action: removeVM(vm)) {
-                    Label("Remove VM", systemImage: "trash")
+                    Label(LocalizedStringKey("Remove VM"), systemImage: "trash")
                         .labelStyle(.iconOnly)
                 }
                 .padding(6)

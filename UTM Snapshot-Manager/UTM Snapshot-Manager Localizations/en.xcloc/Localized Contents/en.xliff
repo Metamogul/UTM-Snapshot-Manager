@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="UTM Snapshot-Manager/en.lproj/Localizable.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="14.2" build-num="14C18"/>
+    </header>
+    <body>
+      <trans-unit id="Add Snapshot" xml:space="preserve">
+        <source>Add Snapshot</source>
+        <target>Add Snapshot</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add more VMs" xml:space="preserve">
+        <source>Add more VMs</source>
+        <target>Add more VMs</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add more VMs to this group" xml:space="preserve">
+        <source>Add more VMs to this group</source>
+        <target>Add more VMs to this group</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create" xml:space="preserve">
+        <source>Create</source>
+        <target>Create</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create a new snapshot for all images in this group" xml:space="preserve">
+        <source>Create a new snapshot for all images in this group</source>
+        <target>Create a new snapshot for all images in this group</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create new snapshot" xml:space="preserve">
+        <source>Create new snapshot</source>
+        <target>Create new snapshot</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Creation date" xml:space="preserve">
+        <source>Creation date</source>
+        <target>Creation date</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ID" xml:space="preserve">
+        <source>ID</source>
+        <target>ID</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Name" xml:space="preserve">
+        <source>Name</source>
+        <target>Name</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="NewGroup" xml:space="preserve">
+        <source>NewGroup</source>
+        <target>NewGroup</target>
+        <note>Default name for new group</note>
+      </trans-unit>
+      <trans-unit id="New…" xml:space="preserve">
+        <source>New…</source>
+        <target>New…</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Please select a VM group on the left to display and edit the contained VMs, images and snapshots." xml:space="preserve">
+        <source>Please select a VM group on the left to display and edit the contained VMs, images and snapshots.</source>
+        <target>Please select a VM group on the left to display and edit the contained VMs, images and snapshots.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remove" xml:space="preserve">
+        <source>Remove</source>
+        <target>Remove</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remove Snapshot" xml:space="preserve">
+        <source>Remove Snapshot</source>
+        <target>Remove Snapshot</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remove VM" xml:space="preserve">
+        <source>Remove VM</source>
+        <target>Remove VM</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remove latest snapshot" xml:space="preserve">
+        <source>Remove latest snapshot</source>
+        <target>Remove latest snapshot</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remove the latest snapshot for all images in this group" xml:space="preserve">
+        <source>Remove the latest snapshot for all images in this group</source>
+        <target>Remove the latest snapshot for all images in this group</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rename" xml:space="preserve">
+        <source>Rename</source>
+        <target>Rename</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Restore Snapshot" xml:space="preserve">
+        <source>Restore Snapshot</source>
+        <target>Restore Snapshot</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Restore latest snapshot" xml:space="preserve">
+        <source>Restore latest snapshot</source>
+        <target>Restore latest snapshot</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Restore the latest snapshot for all images in this group" xml:space="preserve">
+        <source>Restore the latest snapshot for all images in this group</source>
+        <target>Restore the latest snapshot for all images in this group</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tag" xml:space="preserve">
+        <source>Tag</source>
+        <target>Tag</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This VM does not contain any images." xml:space="preserve">
+        <source>This VM does not contain any images.</source>
+        <target>This VM does not contain any images.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This VM wasn't found. Has it been moved, removed or renamed?" xml:space="preserve">
+        <source>This VM wasn't found. Has it been moved, removed or renamed?</source>
+        <target>This VM wasn't found. Has it been moved, removed or renamed?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This image does not contain any snapshots." xml:space="preserve">
+        <source>This image does not contain any snapshots.</source>
+        <target>This image does not contain any snapshots.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="VM Groups" xml:space="preserve">
+        <source>VM Groups</source>
+        <target>VM Groups</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="UTM Snapshot-Manager/en.lproj/UTM Snapshot-Manager-InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="14.2" build-num="14C18"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>UTM Snapshot-Manager</source>
+        <target>UTM Snapshot-Manager</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
+        <source/>
+        <target/>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

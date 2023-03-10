@@ -20,25 +20,25 @@ struct VMGroupDetailsView: View {
         .id(self.vmGroup)
         .toolbar {
             ToolbarItemGroup(placement: .principal) {
-                Button(action: addVMs) {
-                    Label("Add more VMs", systemImage: "plus")
-                }
-                .help("Add more VMs to this group")
-                
-                Spacer(minLength: 10)
-                
+
                 Button(action: restoreLatestSnapshot) {
-                    Label("Restore latest snapshot", systemImage: "gobackward")
+                    Label(LocalizedStringKey("Restore latest snapshot"), systemImage: "externaldrive.badge.timemachine")
                 }
-                .help("Restore the latest snapshot for all images in this group")
+                .help(LocalizedStringKey("Restore the latest snapshot for all images in this group"))
                 Button(action: popSnapshot) {
-                    Label("Remove latest snapshot", systemImage: "rectangle.stack.badge.minus")
+                    Label(LocalizedStringKey("Remove latest snapshot"), systemImage: "rectangle.stack.badge.minus")
                 }
-                .help("Remove the latest snapshot for all images in this group")
+                .help(LocalizedStringKey("Remove the latest snapshot for all images in this group"))
                 Button(action: pushSnapshot) {
-                    Label("Create new snapshot", systemImage: "rectangle.stack.badge.plus")
+                    Label(LocalizedStringKey("Create new snapshot"), systemImage: "rectangle.stack.badge.plus")
                 }
-                .help("Create a new snapshot for all images in this group")
+                .help(LocalizedStringKey("Create a new snapshot for all images in this group"))
+            }
+            ToolbarItem(placement: .navigation) {
+                Button(action: addVMs) {
+                    Label(LocalizedStringKey("Add more VMs"), systemImage: "plus")
+                }
+                .help(LocalizedStringKey("Add more VMs to this group"))
             }
         }
         .navigationTitle(vmGroup.name)

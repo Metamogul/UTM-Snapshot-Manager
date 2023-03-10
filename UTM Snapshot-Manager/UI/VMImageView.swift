@@ -21,15 +21,15 @@ struct VMImageView: View {
             .padding(.top, VMSectionView.bottomPadding / 2)
         
         if image.snapshots.count == 0 {
-            Text("This image does not contain any snapshots.")
+            Text(LocalizedStringKey("This image does not contain any snapshots."))
                 .padding(.leading, VMSectionView.insetDeep)
                 .padding(.bottom, VMSectionView.bottomPadding)
                 .font(Font.system(size: 11))
         } else {
             Table(image.snapshots, selection: $selectedSnapshotID) {
-                TableColumn("ID") { Text($0.id.description) }
-                TableColumn("Tag") { Text($0.tag) }
-                TableColumn("Creation date") { Text($0.creationDate.formatted()) }
+                TableColumn(LocalizedStringKey("ID")) { Text($0.id.description) }
+                TableColumn(LocalizedStringKey("Tag")) { Text($0.tag) }
+                TableColumn(LocalizedStringKey("Creation date")) { Text($0.creationDate.formatted()) }
             }
             .frame(height: CGFloat(image.snapshots.count) * 24 + 24 + 33)
             .padding(.bottom, VMSectionView.bottomPadding)
@@ -37,16 +37,16 @@ struct VMImageView: View {
             .contextMenu {
                 if selectedSnapshotID != nil {
                     Button(action: restoreSnapshot(snapshotID: selectedSnapshotID, atImage: image)) {
-                        Label("Restore", systemImage: "gobackward")
+                        Label(LocalizedStringKey("Restore Snapshot"), systemImage: "gobackward")
                             .labelStyle(.titleAndIcon)
                     }
                     Button(action: removeSnapshot(snapshotID: selectedSnapshotID, fromImage: image)) {
-                        Label("Remove", systemImage: "trash")
+                        Label(LocalizedStringKey("Remove Snapshot"), systemImage: "trash")
                             .labelStyle(.titleAndIcon)
                     }
                 } else {
                     Button(action: addSnapshot(toImage: image)) {
-                        Label("Add", systemImage: "rectangle.stack.badge.plus")
+                        Label(LocalizedStringKey("Add Snapshot"), systemImage: "rectangle.stack.badge.plus")
                             .labelStyle(.titleAndIcon)
                     }
                 }

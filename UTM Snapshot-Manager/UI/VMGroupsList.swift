@@ -12,10 +12,6 @@ struct VMGroupsList: View {
     @State private var presentingNewGroupPopover: Bool = false
     @State private var newGroupName: String = ""
     
-    struct PopoverModel: Identifiable {
-        var id: String { message }
-        let message: String
-    }
     
     var body: some View {
         List {

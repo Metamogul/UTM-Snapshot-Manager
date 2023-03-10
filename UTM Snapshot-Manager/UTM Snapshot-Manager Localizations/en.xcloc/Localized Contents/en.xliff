@@ -90,14 +90,39 @@
         <target>Remove latest snapshot</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Remove latest snapshot for all images in this group?" xml:space="preserve">
+        <source>Remove latest snapshot for all images in this group?</source>
+        <target>Remove latest snapshot for all images in this group?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remove selected snapshot?" xml:space="preserve">
+        <source>Remove selected snapshot?</source>
+        <target>Remove selected snapshot?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Remove the latest snapshot for all images in this group" xml:space="preserve">
         <source>Remove the latest snapshot for all images in this group</source>
         <target>Remove the latest snapshot for all images in this group</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Remove the selected group?" xml:space="preserve">
+        <source>Remove the selected group?</source>
+        <target>Remove the selected group?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remove this VM from the group?" xml:space="preserve">
+        <source>Remove this VM from the group?</source>
+        <target>Remove this VM from the group?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Rename" xml:space="preserve">
         <source>Rename</source>
         <target>Rename</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Restore" xml:space="preserve">
+        <source>Restore</source>
+        <target>Restore</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Restore Snapshot" xml:space="preserve">
@@ -110,6 +135,16 @@
         <target>Restore latest snapshot</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Restore latest snapshot for all images in this group?" xml:space="preserve">
+        <source>Restore latest snapshot for all images in this group?</source>
+        <target>Restore latest snapshot for all images in this group?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Restore selected snapshot?" xml:space="preserve">
+        <source>Restore selected snapshot?</source>
+        <target>Restore selected snapshot?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Restore the latest snapshot for all images in this group" xml:space="preserve">
         <source>Restore the latest snapshot for all images in this group</source>
         <target>Restore the latest snapshot for all images in this group</target>
@@ -118,6 +153,11 @@
       <trans-unit id="Tag" xml:space="preserve">
         <source>Tag</source>
         <target>Tag</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tag for new Snapshot:" xml:space="preserve">
+        <source>Tag for new Snapshot:</source>
+        <target>Tag for new Snapshot:</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="This VM does not contain any images." xml:space="preserve">

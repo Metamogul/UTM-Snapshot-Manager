@@ -90,14 +90,39 @@
         <target>Jüngsten Snapshot löschen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Remove latest snapshot for all images in this group?" xml:space="preserve">
+        <source>Remove latest snapshot for all images in this group?</source>
+        <target>Jüngsten Snapshot für alle Images in dieser Gruppe löschen?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remove selected snapshot?" xml:space="preserve">
+        <source>Remove selected snapshot?</source>
+        <target>Ausgewählten Snapshot löschen?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Remove the latest snapshot for all images in this group" xml:space="preserve">
         <source>Remove the latest snapshot for all images in this group</source>
         <target>Entferne den jüngsten Snapshot für alle Images in dieser Gruppe</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Remove the selected group?" xml:space="preserve">
+        <source>Remove the selected group?</source>
+        <target>Ausgewählte Gruppe löschen?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remove this VM from the group?" xml:space="preserve">
+        <source>Remove this VM from the group?</source>
+        <target>Diese VM aus der Gruppe löschen?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Rename" xml:space="preserve">
         <source>Rename</source>
         <target>Umbenennen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Restore" xml:space="preserve">
+        <source>Restore</source>
+        <target>Wiederherstellen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Restore Snapshot" xml:space="preserve">
@@ -110,6 +135,16 @@
         <target>Jüngsten Snapshot wiederhstellen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Restore latest snapshot for all images in this group?" xml:space="preserve">
+        <source>Restore latest snapshot for all images in this group?</source>
+        <target>Jüngsten Snapshot für alle Images in dieser Gruppe wiederherstellen?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Restore selected snapshot?" xml:space="preserve">
+        <source>Restore selected snapshot?</source>
+        <target>Ausgewählten Snapshot wiederherstellen?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Restore the latest snapshot for all images in this group" xml:space="preserve">
         <source>Restore the latest snapshot for all images in this group</source>
         <target>Stelle den jüngsten Snapshot für alle Images in dieser Gruppe wieder her</target>
@@ -118,6 +153,11 @@
       <trans-unit id="Tag" xml:space="preserve">
         <source>Tag</source>
         <target>Tag</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tag for new Snapshot:" xml:space="preserve">
+        <source>Tag for new Snapshot:</source>
+        <target>Tag für neuen Snapshot:</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="This VM does not contain any images." xml:space="preserve">
@@ -142,7 +182,7 @@
       </trans-unit>
     </body>
   </file>
-  <file original="UTM Snapshot-Manager/en.lproj/UTM Snapshot-Manager-InfoPlist.strings" datatype="plaintext" source-language="en" target-language="de">
+  <file original="UTM Snapshot-Manager/en.lproj/UTM Snapshot-Manager-InfoPlist.strings" source-language="en" target-language="de" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="14.2" build-num="14C18"/>
     </header>

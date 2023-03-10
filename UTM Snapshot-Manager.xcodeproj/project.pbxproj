@@ -15,6 +15,7 @@
 		3DACFFED29BAA3C4003A75A2 /* UTM Snapshot-Manager Localizations in Resources */ = {isa = PBXBuildFile; fileRef = 3DACFFEC29BAA3C4003A75A2 /* UTM Snapshot-Manager Localizations */; };
 		3DACFFF029BAAABE003A75A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DACFFEE29BAAABE003A75A2 /* Localizable.strings */; };
 		3DACFFF529BB676D003A75A2 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DACFFF429BB676D003A75A2 /* ViewModifiers.swift */; };
+		3DACFFF829BB81C8003A75A2 /* UTM Snapshot-Manager-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DACFFF629BB81C7003A75A2 /* UTM Snapshot-Manager-InfoPlist.strings */; };
 		3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */; };
 		3DBDAC2529B27B65009D0F73 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2429B27B65009D0F73 /* MainView.swift */; };
 		3DBDAC2729B27B66009D0F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2629B27B66009D0F73 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		3DACFFEC29BAA3C4003A75A2 /* UTM Snapshot-Manager Localizations */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UTM Snapshot-Manager Localizations"; sourceTree = "<group>"; };
 		3DACFFEF29BAAABE003A75A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DACFFF429BB676D003A75A2 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		3DACFFF729BB81C8003A75A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/UTM Snapshot-Manager-InfoPlist.strings"; sourceTree = "<group>"; };
 		3DBDAC1F29B27B65009D0F73 /* UTM Snapshot-Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UTM Snapshot-Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMSnapshotManagerApp.swift; sourceTree = "<group>"; };
 		3DBDAC2429B27B65009D0F73 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		3DBDAC1629B27B65009D0F73 = {
 			isa = PBXGroup;
 			children = (
+				3DACFFF629BB81C7003A75A2 /* UTM Snapshot-Manager-InfoPlist.strings */,
 				3DBDAC2129B27B65009D0F73 /* UTM Snapshot-Manager */,
 				3DBDAC2029B27B65009D0F73 /* Products */,
 			);
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DACFFED29BAA3C4003A75A2 /* UTM Snapshot-Manager Localizations in Resources */,
+				3DACFFF829BB81C8003A75A2 /* UTM Snapshot-Manager-InfoPlist.strings in Resources */,
 				3DACFFF029BAAABE003A75A2 /* Localizable.strings in Resources */,
 				3DBDAC2729B27B66009D0F73 /* Assets.xcassets in Resources */,
 			);
@@ -198,6 +202,15 @@
 				3DACFFEF29BAAABE003A75A2 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3DACFFF629BB81C7003A75A2 /* UTM Snapshot-Manager-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DACFFF729BB81C8003A75A2 /* de */,
+			);
+			name = "UTM Snapshot-Manager-InfoPlist.strings";
+			path = "UTM Snapshot-Manager";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

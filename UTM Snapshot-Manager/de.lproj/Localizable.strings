@@ -44,10 +44,22 @@
 "Remove latest snapshot" = "Jüngsten Snapshot löschen";
 
 /* No comment provided by engineer. */
+"Remove latest snapshot for all images in this group?" = "Jüngsten Snapshot für alle Images in dieser Gruppe löschen?";
+
+/* No comment provided by engineer. */
+"Remove selected snapshot?" = "Ausgewählten Snapshot löschen?";
+
+/* No comment provided by engineer. */
 "Remove Snapshot" = "Snapshot Löschen";
 
 /* No comment provided by engineer. */
 "Remove the latest snapshot for all images in this group" = "Entferne den jüngsten Snapshot für alle Images in dieser Gruppe";
+
+/* No comment provided by engineer. */
+"Remove the selected group?" = "Ausgewählte Gruppe löschen?";
+
+/* No comment provided by engineer. */
+"Remove this VM from the group?" = "Diese VM aus der Gruppe löschen?";
 
 /* No comment provided by engineer. */
 "Remove VM" = "VM löschen";
@@ -56,7 +68,16 @@
 "Rename" = "Umbenennen";
 
 /* No comment provided by engineer. */
+"Restore" = "Wiederherstellen";
+
+/* No comment provided by engineer. */
 "Restore latest snapshot" = "Jüngsten Snapshot wiederhstellen";
+
+/* No comment provided by engineer. */
+"Restore latest snapshot for all images in this group?" = "Jüngsten Snapshot für alle Images in dieser Gruppe wiederherstellen?";
+
+/* No comment provided by engineer. */
+"Restore selected snapshot?" = "Ausgewählten Snapshot wiederherstellen?";
 
 /* No comment provided by engineer. */
 "Restore Snapshot" = "Snapshot wiederherstellen";
@@ -66,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Tag" = "Tag";
+
+/* No comment provided by engineer. */
+"Tag for new Snapshot:" = "Tag für neuen Snapshot:";
 
 /* No comment provided by engineer. */
 "This image does not contain any snapshots." = "Dieses Image enthält keine Snapshots.";

@@ -13,6 +13,7 @@ struct NameSheetModifier: ViewModifier {
     
     var nameFieldTitle = LocalizedStringKey("Name:")
     var nameFieldMinWidth = CGFloat(150)
+    var nameFieldRestrictFormat = false
     
     var buttonTitle: LocalizedStringKey
     var buttonAction: () -> Void = {}
@@ -21,8 +22,13 @@ struct NameSheetModifier: ViewModifier {
         content
             .sheet(isPresented: $presentingSheet) {
                 Form {
-                    TextField(nameFieldTitle, text: $name)
-                        .frame(minWidth: nameFieldMinWidth)
+                    if !nameFieldRestrictFormat {
+                        TextField(nameFieldTitle, text: $name)
+                            .frame(minWidth: nameFieldMinWidth)
+                    } else {
+                        TextField(nameFieldTitle, value: $name, format: SnapshotStyle())
+                            .frame(minWidth: nameFieldMinWidth)
+                    }
                     Button(buttonTitle, action: buttonActionAndDismissSheet)
                         .keyboardShortcut(.defaultAction)
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -37,6 +43,23 @@ struct NameSheetModifier: ViewModifier {
     func buttonActionAndDismissSheet() {
         self.buttonAction()
         presentingSheet = false
+    }
+    
+    struct SnapshotStyle: ParseableFormatStyle {
+        var parseStrategy: ParseSnapshotTagStrategy = .init()
+        
+        func format(_ value: String /*Tag*/) -> String {
+            return value
+        }
+    }
+    
+    struct ParseSnapshotTagStrategy: ParseStrategy {
+        static let illegalCharacters = " $/\""
+        
+        func parse(_ value: String) throws -> String /*Tag*/ {
+            NSLog("Filtered " + value.filter { !Self.illegalCharacters.contains($0) })
+            return value.filter { !Self.illegalCharacters.contains($0) }
+        }
     }
 }
 
@@ -85,17 +108,15 @@ extension View {
     func newSnapshotSheet(
         presentingSheet: Binding<Bool>,
         name: Binding<String>,
-        nameFieldTitle: LocalizedStringKey = LocalizedStringKey("Tag for new Snapshot:"),
-        nameFieldMinWidth: CGFloat = 250,
-        buttonTitle: LocalizedStringKey = LocalizedStringKey("Create"),
-        buttonAction: @escaping () -> Void = {}
+        buttonAction: @escaping () -> Void
     ) -> some View {
         modifier(
             NameSheetModifier(presentingSheet: presentingSheet,
                               name: name,
-                              nameFieldTitle: nameFieldTitle,
-                              nameFieldMinWidth: nameFieldMinWidth,
-                              buttonTitle: buttonTitle,
+                              nameFieldTitle: LocalizedStringKey("Tag for new Snapshot:"),
+                              nameFieldMinWidth: 250,
+                              nameFieldRestrictFormat: true,
+                              buttonTitle: LocalizedStringKey("Create"),
                               buttonAction: buttonAction)
         )
     }
@@ -104,7 +125,7 @@ extension View {
         presentingDialog: Binding<Bool>,
         title: LocalizedStringKey,
         mainButtonTitle: LocalizedStringKey,
-        mainButtonAction: @escaping () -> Void = {}
+        mainButtonAction: @escaping () -> Void
     ) -> some View {
         modifier(
             SnapshotManagerDialogModifier(presentingDialog: presentingDialog,
@@ -119,7 +140,7 @@ extension View {
         title: LocalizedStringKey,
         mainButtonTitle: LocalizedStringKey,
         mainButtonRole: ButtonRole?,
-        mainButtonAction: @escaping () -> Void = {}
+        mainButtonAction: @escaping () -> Void
     ) -> some View {
         modifier(
             SnapshotManagerDialogModifier(presentingDialog: presentingDialog,

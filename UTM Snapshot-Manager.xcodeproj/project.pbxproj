@@ -17,7 +17,6 @@
 		3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */; };
 		3DBDAC2529B27B65009D0F73 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2429B27B65009D0F73 /* MainView.swift */; };
 		3DBDAC2729B27B66009D0F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2629B27B66009D0F73 /* Assets.xcassets */; };
-		3DBDAC2A29B27B66009D0F73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */; };
 		3DBDAC5029B3642F009D0F73 /* QemuImg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC4F29B3642F009D0F73 /* QemuImg.swift */; };
 		3DBDAC5229B366BA009D0F73 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC5129B366BA009D0F73 /* Common.swift */; };
 		3DBDAC5429B36AE1009D0F73 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC5329B36AE1009D0F73 /* FileManager.swift */; };
@@ -35,7 +34,6 @@
 		3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMSnapshotManagerApp.swift; sourceTree = "<group>"; };
 		3DBDAC2429B27B65009D0F73 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3DBDAC2629B27B66009D0F73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3DBDAC2B29B27B66009D0F73 /* UTMSnapshotManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UTMSnapshotManager.entitlements; sourceTree = "<group>"; };
 		3DBDAC4F29B3642F009D0F73 /* QemuImg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QemuImg.swift; sourceTree = "<group>"; };
 		3DBDAC5129B366BA009D0F73 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -90,21 +88,12 @@
 				3DBDAC5329B36AE1009D0F73 /* FileManager.swift */,
 				3DBDAC4F29B3642F009D0F73 /* QemuImg.swift */,
 				3D19687C29B604FB00541C8B /* UserSettings.swift */,
-				3DBDAC2829B27B66009D0F73 /* Preview Content */,
 				3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */,
 				3DBDAC2B29B27B66009D0F73 /* UTMSnapshotManager.entitlements */,
 				3DACFFEC29BAA3C4003A75A2 /* UTM Snapshot-Manager Localizations */,
 				3DBDAC2629B27B66009D0F73 /* Assets.xcassets */,
 			);
 			path = "UTM Snapshot-Manager";
-			sourceTree = "<group>";
-		};
-		3DBDAC2829B27B66009D0F73 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				3DBDAC2929B27B66009D0F73 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,7 +161,6 @@
 			files = (
 				3DACFFED29BAA3C4003A75A2 /* UTM Snapshot-Manager Localizations in Resources */,
 				3DACFFF029BAAABE003A75A2 /* Localizable.strings in Resources */,
-				3DBDAC2A29B27B66009D0F73 /* Preview Assets.xcassets in Resources */,
 				3DBDAC2729B27B66009D0F73 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,7 +325,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"UTM Snapshot-Manager/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2C77986N3B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -365,7 +353,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"UTM Snapshot-Manager/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2C77986N3B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;

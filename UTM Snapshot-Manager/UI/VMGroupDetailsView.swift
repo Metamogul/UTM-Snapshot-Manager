@@ -20,17 +20,16 @@ struct VMGroupDetailsView: View {
         .id(self.vmGroup)
         .toolbar {
             ToolbarItemGroup(placement: .principal) {
-
                 Button(action: restoreLatestSnapshot) {
-                    Label(LocalizedStringKey("Restore latest snapshot"), systemImage: "externaldrive.badge.timemachine")
+                    Label(LocalizedStringKey("Restore latest snapshot"), systemImage: "clock.arrow.circlepath")
                 }
                 .help(LocalizedStringKey("Restore the latest snapshot for all images in this group"))
                 Button(action: popSnapshot) {
-                    Label(LocalizedStringKey("Remove latest snapshot"), systemImage: "rectangle.stack.badge.minus")
+                    Label(LocalizedStringKey("Remove latest snapshot"), systemImage: "minus.circle")
                 }
                 .help(LocalizedStringKey("Remove the latest snapshot for all images in this group"))
                 Button(action: pushSnapshot) {
-                    Label(LocalizedStringKey("Create new snapshot"), systemImage: "rectangle.stack.badge.plus")
+                    Label(LocalizedStringKey("Create new snapshot"), systemImage: "plus.circle")
                 }
                 .help(LocalizedStringKey("Create a new snapshot for all images in this group"))
             }

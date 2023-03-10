@@ -82,7 +82,6 @@
 		3DBDAC2129B27B65009D0F73 /* UTM Snapshot-Manager */ = {
 			isa = PBXGroup;
 			children = (
-				3DACFFEE29BAAABE003A75A2 /* Localizable.strings */,
 				3D19684229B5F8E700541C8B /* UI */,
 				3DBDAC5129B366BA009D0F73 /* Common.swift */,
 				3DBDAC5329B36AE1009D0F73 /* FileManager.swift */,
@@ -90,6 +89,7 @@
 				3D19687C29B604FB00541C8B /* UserSettings.swift */,
 				3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */,
 				3DBDAC2B29B27B66009D0F73 /* UTMSnapshotManager.entitlements */,
+				3DACFFEE29BAAABE003A75A2 /* Localizable.strings */,
 				3DACFFEC29BAA3C4003A75A2 /* UTM Snapshot-Manager Localizations */,
 				3DBDAC2629B27B66009D0F73 /* Assets.xcassets */,
 			);

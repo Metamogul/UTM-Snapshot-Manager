@@ -57,7 +57,6 @@ struct NameSheetModifier: ViewModifier {
         static let illegalCharacters = " $/\""
         
         func parse(_ value: String) throws -> String /*Tag*/ {
-            NSLog("Filtered " + value.filter { !Self.illegalCharacters.contains($0) })
             return value.filter { !Self.illegalCharacters.contains($0) }
         }
     }

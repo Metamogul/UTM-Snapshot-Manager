@@ -51,6 +51,9 @@ struct VMGroupsList: View {
 struct VMGroupsListEntry: View {
     @EnvironmentObject private var userSettings: UserSettings
     @Binding var vmGroup: VMGroup
+    
+    @State private var presentingShouldRemoveAlert = false
+    
     @State private var presentingRenameGroupSheet = false
     @State private var newGroupName = ""
     
@@ -59,7 +62,7 @@ struct VMGroupsListEntry: View {
             Label(vmGroup.name, systemImage: "rectangle.on.rectangle")
         }
         .contextMenu {
-            Button(action: removeGroup) {
+            Button(action: { presentingShouldRemoveAlert = true }) {
                 Label(LocalizedStringKey("Remove"), systemImage: "trash")
                     .labelStyle(.titleAndIcon)
             }
@@ -69,17 +72,17 @@ struct VMGroupsListEntry: View {
                     .labelStyle(.titleAndIcon)
             }
         }
-        .sheet(isPresented: $presentingRenameGroupSheet) {
-            Form {
-                TextField(LocalizedStringKey("New name:"), text: $newGroupName)
-                    .frame(minWidth: 150)
-                Button(LocalizedStringKey("Rename"), action: renameGroup )
-                    .keyboardShortcut(.defaultAction)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-            }
-            .padding()
-        }
-
+        .nameSheet(presentingSheet: $presentingRenameGroupSheet,
+                   name: $newGroupName,
+                   nameFieldTitle: LocalizedStringKey("New name:"),
+                   buttonTitle: LocalizedStringKey("Rename"),
+                   buttonAction: renameGroup
+        )
+        .snapshotManagerDialog(presentingDialog: $presentingShouldRemoveAlert,
+                               title: LocalizedStringKey("Remove the selected group?"),
+                               mainButtonTitle: LocalizedStringKey("Remove"),
+                               mainButtonRole: .destructive,
+                               mainButtonAction: removeGroup)
     }
     
     private func presentRenameGroupSheet() {
@@ -91,7 +94,6 @@ struct VMGroupsListEntry: View {
         if !newGroupName.isEmpty {
             vmGroup.name = newGroupName
         }
-        self.presentingRenameGroupSheet = false
     }
     
     private func removeGroup() {

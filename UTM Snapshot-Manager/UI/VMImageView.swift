@@ -13,6 +13,12 @@ struct VMImageView: View {
     
     @State private var selectedSnapshotID: VMSnapshot.ID?
     
+    @State private var presentingNewSnapshotSheet = false
+    @State private var newSnapshotName = ""
+    
+    @State private var presentingShouldRestoreAlert = false
+    @State private var presentingShouldRemoveAlert = false
+    
     var body: some View {
         Label(image.url.lastPathComponent, systemImage: "externaldrive")
             .foregroundColor(Color.black.opacity(0.6))
@@ -36,22 +42,38 @@ struct VMImageView: View {
             .scrollDisabled(true)
             .contextMenu {
                 if selectedSnapshotID != nil {
-                    Button(action: restoreSnapshot(snapshotID: selectedSnapshotID, atImage: image)) {
+                    Button(action: { presentingShouldRestoreAlert = true }) {
                         Label(LocalizedStringKey("Restore Snapshot"), systemImage: "clock.arrow.circlepath")
                             .labelStyle(.titleAndIcon)
                     }
-                    Button(action: removeSnapshot(snapshotID: selectedSnapshotID, fromImage: image)) {
+                    Button(action: { presentingShouldRemoveAlert = true }) {
                         Label(LocalizedStringKey("Remove Snapshot"), systemImage: "minus.circle")
                             .labelStyle(.titleAndIcon)
                     }
                 } else {
-                    Button(action: addSnapshot(toImage: image)) {
+                    Button(action: { presentingNewSnapshotSheet = true }) {
                         Label(LocalizedStringKey("Add Snapshot"), systemImage: "rectangle.stack.badge.plus")
                             .labelStyle(.titleAndIcon)
                     }
                 }
                 
             }
+            .newSnapshotSheet(
+                presentingSheet: $presentingNewSnapshotSheet,
+                name: $newSnapshotName,
+                buttonAction: addSnapshot
+            )
+            .snapshotManagerDialog(presentingDialog: $presentingShouldRestoreAlert,
+                                   title: LocalizedStringKey("Restore selected snapshot?"),
+                                   mainButtonTitle: LocalizedStringKey("Restore"),
+                                   mainButtonAction: restoreSnapshot
+            )
+            .snapshotManagerDialog(presentingDialog: $presentingShouldRemoveAlert,
+                                   title: LocalizedStringKey("Remove selected snapshot?"),
+                                   mainButtonTitle: LocalizedStringKey("Remove"),
+                                   mainButtonRole: .destructive,
+                                   mainButtonAction: removeSnapshot
+            )
         }
         if vm.images.last != image {
             if vm.images.last?.snapshots.count ?? 0 > 0 {
@@ -65,36 +87,30 @@ struct VMImageView: View {
         }
     }
     
-    private func restoreSnapshot(snapshotID: VMSnapshot.ID?, atImage image: VMImage) -> () -> () {
-        guard let snapshotID = snapshotID else {
-            return {}
+    private func restoreSnapshot() {
+        guard let snapshotID = self.selectedSnapshotID,
+              let snapshot = self.image.snapshots.first(where: { $0.id == snapshotID }) else {
+            return
         }
         
-        return {
-            if let snapshot = image.snapshots.first(where: { $0.id == snapshotID }) {
-                image.restoreSnapshot(snapshot)
-            }
-        }
+        self.image.restoreSnapshot(snapshot)
     }
     
-    private func removeSnapshot(snapshotID: VMSnapshot.ID?, fromImage image: VMImage) -> () -> () {
-        guard let snapshotID = snapshotID else {
-            return {}
+    private func removeSnapshot() {
+        guard let snapshotID = self.selectedSnapshotID,
+              let snapshot = self.image.snapshots.first(where: { $0.id == snapshotID }) else {
+            return
         }
         
-        return {
-            if let snapshot = image.snapshots.first(where: { $0.id == snapshotID }) {
-                image.removeSnapshot(snapshot)
-                self.selectedSnapshotID = nil
-            }
-        }
+        self.image.removeSnapshot(snapshot)
+        self.selectedSnapshotID = nil
     }
     
-    private func addSnapshot(toImage image: VMImage) -> () -> () {{
-        image.createSnapshot()
-        let lastSnapshotID = image.snapshots.last?.id
+    private func addSnapshot() {
+        self.image.createSnapshot(self.newSnapshotName)
+        let lastSnapshotID = self.image.snapshots.last?.id
         self.selectedSnapshotID = lastSnapshotID
-    }}
+    }
 }
 
 struct VMImageView_Previews: PreviewProvider {

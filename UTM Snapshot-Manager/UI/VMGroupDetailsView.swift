@@ -11,6 +11,12 @@ import UniformTypeIdentifiers
 struct VMGroupDetailsView: View {
     @Binding var vmGroup: VMGroup
     
+    @State private var presentingNewSnapshotSheet = false
+    @State private var newSnapshotName = ""
+    
+    @State private var presentingShouldRestoreAlert = false
+    @State private var presentingShouldRemoveAlert = false
+    
     var body: some View {
         List {
             ForEach($vmGroup.vms) { $vm in
@@ -20,15 +26,15 @@ struct VMGroupDetailsView: View {
         .id(self.vmGroup)
         .toolbar {
             ToolbarItemGroup(placement: .principal) {
-                Button(action: restoreLatestSnapshot) {
+                Button(action: { presentingShouldRestoreAlert = true }) {
                     Label(LocalizedStringKey("Restore latest snapshot"), systemImage: "clock.arrow.circlepath")
                 }
                 .help(LocalizedStringKey("Restore the latest snapshot for all images in this group"))
-                Button(action: popSnapshot) {
+                Button(action: { presentingShouldRemoveAlert = true }) {
                     Label(LocalizedStringKey("Remove latest snapshot"), systemImage: "minus.circle")
                 }
                 .help(LocalizedStringKey("Remove the latest snapshot for all images in this group"))
-                Button(action: pushSnapshot) {
+                Button(action: { presentingNewSnapshotSheet = true }) {
                     Label(LocalizedStringKey("Create new snapshot"), systemImage: "plus.circle")
                 }
                 .help(LocalizedStringKey("Create a new snapshot for all images in this group"))
@@ -41,6 +47,21 @@ struct VMGroupDetailsView: View {
             }
         }
         .navigationTitle(vmGroup.name)
+        .newSnapshotSheet(
+            presentingSheet: $presentingNewSnapshotSheet,
+            name: $newSnapshotName,
+            buttonAction: pushSnapshot
+        )
+        .snapshotManagerDialog(presentingDialog: $presentingShouldRestoreAlert,
+                               title: LocalizedStringKey("Restore latest snapshot for all images in this group?"),
+                               mainButtonTitle: LocalizedStringKey("Restore"),
+                               mainButtonAction: restoreLatestSnapshot
+        )
+        .snapshotManagerDialog(presentingDialog: $presentingShouldRemoveAlert,
+                               title: LocalizedStringKey("Remove latest snapshot for all images in this group?"),
+                               mainButtonTitle: LocalizedStringKey("Remove"),
+                               mainButtonRole: .destructive,
+                               mainButtonAction: popSnapshot)
     }
     
     private func addVMs() {
@@ -74,7 +95,7 @@ struct VMGroupDetailsView: View {
     private func pushSnapshot() {
         for vm in self.vmGroup.vms.filter({ FileManager.isValidUTMPackageUrl($0.url) }) {
             for image in vm.images {
-                image.createSnapshot()
+                image.createSnapshot(self.newSnapshotName)
             }
         }
     }

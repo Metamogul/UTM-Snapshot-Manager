@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct VMSectionView: View {
-    @Binding var vmGroup: VMGroup
-    @Binding var vm: VM
-    
     static let bottomPadding: CGFloat = 10
     static let insetNormal: CGFloat = 15
     static let insetDeep: CGFloat = 18
+    
+    @Binding var vmGroup: VMGroup
+    @Binding var vm: VM
+    
+    @State private var presentingShouldDeleteVMDialog = false
     
     var body: some View {
         Section {
@@ -39,7 +41,7 @@ struct VMSectionView: View {
             }
         } header: {
             HStack {
-                Button(action: removeVM(vm)) {
+                Button(action: { presentingShouldDeleteVMDialog = true }) {
                     Label(LocalizedStringKey("Remove VM"), systemImage: "trash")
                         .labelStyle(.iconOnly)
                 }
@@ -52,6 +54,10 @@ struct VMSectionView: View {
                 
             }
         }
+        .snapshotManagerDialog(presentingDialog: $presentingShouldDeleteVMDialog,
+                               title: LocalizedStringKey("Remove this VM from the group?"),
+                               mainButtonTitle: LocalizedStringKey("Remove"),
+                               mainButtonAction: removeVM(vm))
     }
     
     private func removeVM(_ vm: VM) -> () -> () {

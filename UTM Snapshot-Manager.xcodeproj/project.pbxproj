@@ -14,6 +14,7 @@
 		3D4BD95729BA20FB0039EBE9 /* VMImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4BD95629BA20FB0039EBE9 /* VMImageView.swift */; };
 		3DACFFED29BAA3C4003A75A2 /* UTM Snapshot-Manager Localizations in Resources */ = {isa = PBXBuildFile; fileRef = 3DACFFEC29BAA3C4003A75A2 /* UTM Snapshot-Manager Localizations */; };
 		3DACFFF029BAAABE003A75A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DACFFEE29BAAABE003A75A2 /* Localizable.strings */; };
+		3DACFFF529BB676D003A75A2 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DACFFF429BB676D003A75A2 /* ViewModifiers.swift */; };
 		3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */; };
 		3DBDAC2529B27B65009D0F73 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2429B27B65009D0F73 /* MainView.swift */; };
 		3DBDAC2729B27B66009D0F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBDAC2629B27B66009D0F73 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		3D4BD95629BA20FB0039EBE9 /* VMImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMImageView.swift; sourceTree = "<group>"; };
 		3DACFFEC29BAA3C4003A75A2 /* UTM Snapshot-Manager Localizations */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UTM Snapshot-Manager Localizations"; sourceTree = "<group>"; };
 		3DACFFEF29BAAABE003A75A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DACFFF429BB676D003A75A2 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		3DBDAC1F29B27B65009D0F73 /* UTM Snapshot-Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UTM Snapshot-Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DBDAC2229B27B65009D0F73 /* UTMSnapshotManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMSnapshotManagerApp.swift; sourceTree = "<group>"; };
 		3DBDAC2429B27B65009D0F73 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				3D19687E29B62B6600541C8B /* VMGroupDetailsView.swift */,
 				3D4BD95429BA1CE60039EBE9 /* VMSectionView.swift */,
 				3D4BD95629BA20FB0039EBE9 /* VMImageView.swift */,
+				3DACFFF429BB676D003A75A2 /* ViewModifiers.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				3DBDAC2529B27B65009D0F73 /* MainView.swift in Sources */,
 				3DBDAC2329B27B65009D0F73 /* UTMSnapshotManagerApp.swift in Sources */,
 				3D4BD95729BA20FB0039EBE9 /* VMImageView.swift in Sources */,
+				3DACFFF529BB676D003A75A2 /* ViewModifiers.swift in Sources */,
 				3D4BD95529BA1CE60039EBE9 /* VMSectionView.swift in Sources */,
 				3DBDAC5029B3642F009D0F73 /* QemuImg.swift in Sources */,
 				3D19687F29B62B6600541C8B /* VMGroupDetailsView.swift in Sources */,

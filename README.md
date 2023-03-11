@@ -38,4 +38,4 @@ To report a bug, please [create an issue ticket](https://github.com/Metamogul/UT
 
 This project is distributed under the permissive [Apache 2.0 license](https://github.com/Metamogul/UTM-Snapshot-Manager/blob/main/LICENSE) as included. It doesn't use any other source components, packages or libraries under different licenses (apart from Apple's own system frameworks).
 
-The app icon is taken from the orignal UTM project and included with the source under an Apache 2.0 license as well. If you're part of that project and feel that this is not appropriate, please contact me so I can replace it.
+The app icon was taken from the orignal UTM project, where it's included with the source. If you're part of that project and feel that this is not appropriate, please contact me so I can replace it.

@@ -16,7 +16,6 @@ class UserSettings: ObservableObject {
             if let vmGroupsEncoded = try? encoder.encode(vmGroups) {
                 UserDefaults.standard.set(vmGroupsEncoded, forKey: UserSettings.vmGroupsEncodedKey)
             }
-            
         }
     }
     

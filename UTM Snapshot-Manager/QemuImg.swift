@@ -43,7 +43,6 @@ class QemuImg {
             if (snapshot.tag != "suspend") {
                 snapshots.append(snapshot)
             }
-            
         }
         
         return snapshots

@@ -158,6 +158,5 @@ struct VMGroupDetailsView_Previews: PreviewProvider {
                     .frame(minHeight: 800)
             }
         }
-        
     }
 }

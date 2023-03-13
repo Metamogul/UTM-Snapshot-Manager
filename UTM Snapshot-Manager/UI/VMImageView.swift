@@ -56,7 +56,6 @@ struct VMImageView: View {
                             .labelStyle(.titleAndIcon)
                     }
                 }
-                
             }
             .newSnapshotSheet(
                 presentingSheet: $presentingNewSnapshotSheet,

@@ -22,6 +22,14 @@ struct VMGroupDetailsView: View {
             Text(LocalizedStringKey("There are no VMs in this group so far. Use the + button in the navigation area of the menu bar to add VMs."))
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .toolbar {
+                    ToolbarItem(placement: .navigation) {
+                        Button(action: addVMs) {
+                            Label(LocalizedStringKey("Add more VMs"), systemImage: "plus")
+                        }
+                        .help(LocalizedStringKey("Add more VMs to this group"))
+                    }
+                }
         } else {
             List {
                 ForEach($vmGroup.vms) { $vm in

@@ -1,6 +1,6 @@
 # UTM Snapshot Manager
 
-This is a companion app for the popular MacOS virtual machine host [UTM](https://github.com/utmapp/UTM) to manage snapshots for existing virtual machines. UTM itself doesn't give access to that functionality so far; however the QEMU hypervisor, on which UTM is based, offers [snapshot management](https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html). This project is more intended as proof-of-concept for that functionality and less as a releasable product – especially it doesn't come with a precompiled release binary (since I don't have a paid Apple Developer subscription to create an app package signed for distribution). However it should be perfectly possible to just download and compile it out of the box.
+This is a companion app for the popular MacOS virtual machine host [UTM](https://github.com/utmapp/UTM) to manage snapshots for existing virtual machines. UTM itself doesn't give access to that functionality so far; however the QEMU hypervisor, on which UTM is based, offers [snapshot management](https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html). This project is more intended as proof-of-concept for that functionality and less as a releasable product – especially it doesn't support taking live snapshots and doesn't come with a precompiled release binary (since I don't have a paid Apple Developer subscription to create an app package signed for distribution). However it should be perfectly possible to just download and compile it out of the box.
 
 ![UTM Snapshot Manager - Screenshot of the main window with navigation pane on the left and details view with VMs on the right](https://github.com/Metamogul/UTM-Snapshot-Manager/blob/main/Screenshot.png)
 
@@ -14,7 +14,9 @@ For it's functionality the app depends on `qemu-img` – it's basically a nice U
 
 ## Usage ##
 
-Use the navigation pane on the right to manage groups of VMs. A group can also just contain one virtual machine. With a group selected, virtual machines can be added via the ➕ icon in the navigation area. Every virtual machine in a group will display a list of it's snapshots or a placeholder if there are none. Use the ➕, ➖ and 🔄 icons in the central toolbar area to create, delete or restore a snapshot for every VM in the group. Open a context menu in an empty space at the bottom of a snapshot list to add a snapshot to just that single virtual machine. Select a snapshot in a list and open a context menu to restore or delete just that particular snapshot.
+Use the navigation pane on the right to manage groups of VMs. A group can also just contain one virtual machine. With a group selected, virtual machines can be added via the ➕ icon in the navigation area. Every virtual machine in a group will display a list of it's snapshots or a placeholder if there are none. Use the ➕, ➖ and 🔄 icons in the central toolbar area to create, delete or restore a snapshot of the disks for every VM in the group. Open a context menu in an empty space at the bottom of a snapshot list to add a snapshot to just that single virtual machine's disk. Select a snapshot in a list and open a context menu to restore or delete just that particular snapshot.
+
+**Warning**: Please keep in mind that the snapshot creation operates only on the disk files of the VMs. Don't use it on live VMs, because there's a very high risk of ending up with a corrupted file system due to uncommitted changes, unwritten caches etc.
 
 ## Known issues ##
 
@@ -32,7 +34,7 @@ If you're part of the UTM development team and want to incorporate such function
 
 ## Reporting a bug ##
 
-To report a bug, please [create an issue ticket](https://github.com/Metamogul/UTM-Snapshot-Manager/issues) for it. In the ticket please provide a description of the state of the app, the action you've been performing, the expected outcome and the actual outcome. Also include your system architecture (x86_64 or arm64), the MacOS version you're on, the XCode-Version you've been using as well as any other information that seems relevant to you.
+To report a bug, please [create an issue ticket](https://github.com/Metamogul/UTM-Snapshot-Manager/issues) for it. In the ticket please provide a description of the state of the app, the action you've been performing, the expected outcome and the actual outcome. Also include your system architecture as reported by `arch`, the MacOS version you're on as reported by `sw_vers`, the XCode-Version you've been using as reported by `xcodebuild -version` as well as any other information that seems relevant to you.
 
 ## License ##
 

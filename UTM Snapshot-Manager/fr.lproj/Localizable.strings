@@ -1,0 +1,108 @@
+/* No comment provided by engineer. */
+"Add more VMs" = "Ajouter des VM";
+
+/* No comment provided by engineer. */
+"Add more VMs to this group" = "Ajouter une VM à ce groupe";
+
+/* No comment provided by engineer. */
+"Add Snapshot" = "Nouveau snapshot";
+
+/* No comment provided by engineer. */
+"Create" = "Créer";
+
+/* No comment provided by engineer. */
+"Create a new snapshot for all images in this group" = "Créer un nouveau snapshot pour toutes les images de ce groupe";
+
+/* No comment provided by engineer. */
+"Create new snapshot" = "Créer un nouveau snapshot";
+
+/* No comment provided by engineer. */
+"Creation date" = "Date de création";
+
+/* No comment provided by engineer. */
+"ID" = "ID";
+
+/* No comment provided by engineer. */
+"Name:" = "Nom :";
+
+/* No comment provided by engineer. */
+"New name:" = "Nouveau Nom :";
+
+/* No comment provided by engineer. */
+"New…" = "Nouvau…";
+
+/* Default name for new group */
+"NewGroup" = "NouveauGroupe";
+
+/* No comment provided by engineer. */
+"Please select a VM group on the left to display and edit the contained VMs, images and snapshots." = "Veuillez choisir un groupe de VM dans le panneau de navigation pour afficher et éditer les VM contenues, les images disques et snapshots.";
+
+/* No comment provided by engineer. */
+"Remove" = "Effacer";
+
+/* No comment provided by engineer. */
+"Remove latest snapshot" = "Effacer le dernier snapshot";
+
+/* No comment provided by engineer. */
+"Remove latest snapshot for all images in this group?" = "Effacer le dernier snapshot pour toutes les images disques de ce groupe ?";
+
+/* No comment provided by engineer. */
+"Remove selected snapshot?" = "Effacer le snapshot sélectionné?";
+
+/* No comment provided by engineer. */
+"Remove Snapshot" = "Effacer le snapshot";
+
+/* No comment provided by engineer. */
+"Remove the latest snapshot for all images in this group" = "Effacer le dernier snapshot pour toutes les images disques du groupe";
+
+/* No comment provided by engineer. */
+"Remove the selected group?" = "Effacer le groupe sélectionné ?";
+
+/* No comment provided by engineer. */
+"Remove this VM from the group?" = "Retirer cette VM du groupe ?";
+
+/* No comment provided by engineer. */
+"Remove VM" = "Retirer la VM";
+
+/* No comment provided by engineer. */
+"Rename" = "Renommer";
+
+/* No comment provided by engineer. */
+"Restore" = "Restaurer";
+
+/* No comment provided by engineer. */
+"Restore latest snapshot" = "Restaurer le dernier snapshot";
+
+/* No comment provided by engineer. */
+"Restore latest snapshot for all images in this group?" = "Restaurer le dernier snapshot pour toutes les images disques du groupe ?";
+
+/* No comment provided by engineer. */
+"Restore selected snapshot?" = "Restaurer le snapshot sélectionné ?";
+
+/* No comment provided by engineer. */
+"Restore Snapshot" = "Restaurer le snapshot";
+
+/* No comment provided by engineer. */
+"Restore the latest snapshot for all images in this group" = "Restaurer le dernier snapshot pour toutes les images disques du groupe";
+
+/* No comment provided by engineer. */
+"Tag" = "Tag";
+
+/* No comment provided by engineer. */
+"Tag for new Snapshot:" = "Tag pour le nouveau snapshot :";
+
+/* No comment provided by engineer. */
+"There are no VMs in this group so far. Use the + button in the navigation area of the menu bar to add VMs." = "Il n'y a pas de VM dans ce groupe. Utilisez le bouton + dans le menu du panneau de navigation pour ajouter des VM.";
+
+/* No comment provided by engineer. */
+"This image does not contain any snapshots." = "Cette image disque n'a pas de snapshots.";
+
+/* No comment provided by engineer. */
+"This VM does not contain any images." = "Cette VM n'a pas d'images disques.";
+
+/* No comment provided by engineer. */
+"This VM wasn't found. Has it been moved, removed or renamed?" = "VM introuvable. A-t-elle été déplacée, effacée ou renomméee ?";
+
+/* No comment provided by engineer. */
+"VM groups" = "Groupes de VM";
+

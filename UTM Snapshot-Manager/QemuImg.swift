@@ -8,8 +8,8 @@
 import Foundation
 
 class QemuImg {
-    private static let qemuImgPath = "/opt/homebrew/bin/qemu-img"
-    
+    private static let qemuImgPath = FileManager.default.fileExists(atPath:"/usr/local/bin/qemu-img") ? "/usr/local/bin/qemu-img" : "/opt/homebrew/bin/qemu-img"
+
     private static let snapshotLinePattern = /^\d+.*?\n/.anchorsMatchLineEndings()
     private static let idPattern = /^\d+/
     private static let tagPattern = /^\d+\s+(?<tag>.*?)\s/

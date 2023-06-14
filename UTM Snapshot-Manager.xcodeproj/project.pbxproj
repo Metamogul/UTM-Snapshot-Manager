@@ -44,6 +44,8 @@
 		3DBDAC4F29B3642F009D0F73 /* QemuImg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QemuImg.swift; sourceTree = "<group>"; };
 		3DBDAC5129B366BA009D0F73 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		3DBDAC5329B36AE1009D0F73 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		F52335F82A1D356E00659292 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "fr.lproj/UTM Snapshot-Manager-InfoPlist.strings"; sourceTree = "<group>"; };
+		F52335F92A1D357400659292 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				en,
 				de,
 				Base,
+				fr,
 			);
 			mainGroup = 3DBDAC1629B27B65009D0F73;
 			packageReferences = (
@@ -204,6 +207,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3DACFFEF29BAAABE003A75A2 /* de */,
+				F52335F92A1D357400659292 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -212,6 +216,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3DACFFF729BB81C8003A75A2 /* de */,
+				F52335F82A1D356E00659292 /* fr */,
 			);
 			name = "UTM Snapshot-Manager-InfoPlist.strings";
 			path = "UTM Snapshot-Manager";
@@ -347,10 +352,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 2C77986N3B;
+				DEVELOPMENT_TEAM = YG57WKQ4Q3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -375,10 +381,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 2C77986N3B;
+				DEVELOPMENT_TEAM = YG57WKQ4Q3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

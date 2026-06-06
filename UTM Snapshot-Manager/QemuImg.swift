@@ -146,7 +146,11 @@ class QemuImg {
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: .utf8)!
-        
+
+        if task.terminationStatus != 0 {
+            print(output)
+        }
+
         return output
     }
 }

@@ -21,7 +21,7 @@ struct VMImageView: View {
     
     var body: some View {
         Label(image.url.lastPathComponent, systemImage: "externaldrive")
-            .foregroundColor(Color.black.opacity(0.6))
+            .foregroundColor(Color.secondary)
             .padding(.leading, VMSectionView.insetNormal)
             .padding(.bottom, VMSectionView.bottomPadding / 2)
             .padding(.top, VMSectionView.bottomPadding / 2)

@@ -1,43 +1,110 @@
 # UTM Snapshot Manager
 
-This is a companion app for the popular MacOS virtual machine host [UTM](https://github.com/utmapp/UTM) to manage snapshots for existing virtual machines. UTM itself doesn't give access to that functionality so far; however the QEMU hypervisor which UTM leverages per default, offers [snapshot management](https://kashyapc.fedorapeople.org/virt/lc-2012/snapshots-handout.html) for `.qcow` formatted disks. This project is intended as proof-of-concept for that functionality and not as a releasable product – especially it doesn't support taking live snapshots, supports only the default QEMU hypervisor and doesn't come with a precompiled release binary (since I don't have a paid Apple Developer subscription to create an app package signed for distribution). However it should be perfectly possible to just download and compile it out of the box.
+Restore points for [UTM](https://mac.getutm.app) virtual machines — as a proper Mac app.
 
-![UTM Snapshot Manager - Screenshot of the main window with navigation pane on the left and details view with VMs on the right](https://github.com/Metamogul/UTM-Snapshot-Manager/blob/main/Screenshot.png)
+UTM has no snapshot interface of its own; the feature request was
+[closed as *not planned*](https://github.com/utmapp/UTM/issues/6020). The QEMU backend
+underneath it *does* support snapshots on `qcow2` disks, it just has no face. This app is
+that face: it finds your machines by itself, shows their restore points on a timeline, and
+refuses to do anything dangerous behind your back.
 
-## Building ##
+## Install
 
-Clone the repository ( `git clone git@github.com:Metamogul/UTM-Snapshot-Manager.git` ), open the included project file in a recent XCode version (14.2. or newer) and build. There are no further source dependencies.
+```sh
+git clone https://github.com/nurkert/UTM-Snapshot-Manager.git
+cd UTM-Snapshot-Manager
+./install.sh
+```
 
-### Dependencies ###
+That's it. The script installs what's missing (QEMU via Homebrew, XcodeGen), builds the app
+and puts it into `/Applications`. Requires macOS 14 or newer and Xcode.
 
-For it's functionality the app depends on `qemu-img` – it's basically a nice UI frontend for it. The app expects to find it at `/opt/homebrew/bin/qemu-img`. This dependency is not included. It can be installed as part of the brew qemu package via `brew install qemu`.
+## What it does
 
-## Usage ##
+**Finds your machines by itself.** No adding, no groups, no configuration. Spotlight plus a
+scan of the usual folders turns up every `.utm` bundle on the Mac, wherever it lives. Two
+machines with the same name are told apart by their folder.
 
-Use the navigation pane on the right to manage groups of VMs. A group can also just contain one virtual machine. With a group selected, virtual machines can be added via the ➕ icon in the navigation area. Every virtual machine in a group will display a list of it's snapshots or a placeholder if there are none. Use the ➕, ➖ and 🔄 icons in the central toolbar area to create, delete or restore a snapshot of the `.qcow` disks for every VM in the group. Open a context menu in an empty space at the bottom of a snapshot list to add a snapshot to just that single virtual machine's disk. Select a snapshot in a list and open a context menu to restore or delete just that particular snapshot.
+**Keeps you from breaking your VM.** Snapshotting a *running* machine is the fastest way to
+a corrupted file system: caches never reach the disk, and the image is captured mid-write.
+The app detects running and suspended machines, disables every write action, and explains
+why in plain words instead of showing a greyed-out button. It re-checks a second time right
+before writing, because a machine can be started between the scan and your click. `qemu-img`'s
+own file lock is the final backstop.
 
-**Warning**: Please keep in mind that the snapshot creation operates only on `.qcow` disk files of the VMs. Don't use it on live VMs, because there's a very high risk of ending up with a corrupted file system due to uncommitted changes, unwritten caches etc.
+**Makes restoring reversible.** Restoring throws away everything since the snapshot, so the
+confirmation dialog offers — checked by default — to save the current state first. One
+misclick doesn't cost you a day's work.
 
-## Known issues ##
+**Handles multi-disk machines.** Snapshots are created, restored and deleted across all disks
+of a machine as one unit. If a restore point is missing on one disk, it's flagged as
+incomplete rather than silently pretending to be fine.
 
-During development and testing, I've discovered a number of minor issues with the UI which I didn't take the time to fix so far.
+## How it works
 
-- When deleting the VM group directly over the creation button, the creation button will be highlighted until clicked again.
-- Selecting a row in a snapshot table sometimes takes clicking on it twice or more, same goes for opening the context menu on it.
-- When deleting a snapshot, occasionally a bunch of `=== AttributeGraph: cycle detected through attribute 787512 ===` warnings show up in the debug log.
+Everything goes through `qemu-img`, the tool that ships with QEMU:
 
-## Contributing ##
+| Action | Command |
+| --- | --- |
+| Read | `qemu-img info -U --output=json <disk>` |
+| Create | `qemu-img snapshot -c <name> <disk>` |
+| Restore | `qemu-img snapshot -a <name> <disk>` |
+| Delete | `qemu-img snapshot -d <name> <disk>` |
 
-Feel free to contribute by creating a fork and issuing a pull request. When issuing a pull request, it would be nice if you could relate it to an open ticket so there's documentation later on.
+Reading uses `-U`, which is read-only and safe even while a machine runs — that's how the
+snapshot list stays visible for a running VM. Only the write operations are gated.
 
-If you're part of the UTM development team and want to incorporate such functionality into UTM, let me know. I'd be glad to help.
+Snapshots live *inside* the `qcow2` file. They cost almost nothing when created and grow only
+as the disk diverges from them. UTM's own `suspend` snapshot is hidden from the list and its
+name is reserved, so it can never be overwritten.
 
-## Reporting a bug ##
+## Requirements
 
-To report a bug, please [create an issue ticket](https://github.com/Metamogul/UTM-Snapshot-Manager/issues) for it. In the ticket please provide a description of the state of the app, the action you've been performing, the expected outcome and the actual outcome. Also include your system architecture as reported by `arch`, the MacOS version you're on as reported by `sw_vers`, the XCode-Version you've been using as reported by `xcodebuild -version` as well as any other information that seems relevant to you.
+- macOS 14 or newer
+- [UTM](https://mac.getutm.app) with QEMU-backend machines (Apple Virtualization uses a disk
+  format that has no snapshots — those machines are shown, but marked as unsupported)
+- `qemu-img` (`brew install qemu`) — the app walks you through this if it's missing
 
-## License ##
+## Building manually
 
-This project is distributed under the permissive [Apache 2.0 license](https://github.com/Metamogul/UTM-Snapshot-Manager/blob/main/LICENSE) as included. It doesn't use any other source components, packages or libraries under different licenses (apart from Apple's own system frameworks).
+```sh
+brew install xcodegen qemu
+swift Tools/MakeIcon.swift        # regenerates the app icon
+xcodegen generate                 # writes the .xcodeproj from project.yml
+open "UTM Snapshot Manager.xcodeproj"
+```
 
-The app icon was taken from the orignal UTM project, where it's included with the source. If you're part of that project and feel that this is not appropriate, please contact me so I can replace it.
+The Xcode project is generated from `project.yml`, so it never shows up as noise in diffs.
+`Tools/MakeIcon.swift` draws the icon from an SF Symbol, so it stays reproducible.
+
+## Relationship to the original
+
+This is a fork of [Metamogul/UTM-Snapshot-Manager](https://github.com/Metamogul/UTM-Snapshot-Manager),
+rewritten from scratch. The original was explicitly a proof of concept and listed a number of
+known issues; this rewrite is aimed at being a finished product. Concretely:
+
+| Original | Here |
+| --- | --- |
+| VMs had to be added manually and sorted into groups | Found automatically, no setup |
+| Warned about running VMs in the README | Detects them and blocks the action, twice |
+| Snapshot list parsed from `qemu-img` text output with regexes | Parsed from `--output=json` |
+| Rows often needed two or three clicks to select | Whole row is one hit target |
+| Deleting a group left the create button stuck highlighted | Standard `List` selection, no custom hit handling |
+| AttributeGraph cycle warnings when deleting a snapshot | Sheets dismiss before state changes; one observable model, refreshed as a whole |
+| Restore was irreversible | Optional automatic safety snapshot, on by default |
+| No app icon of its own (used UTM's) | Own icon, generated from an SF Symbol |
+
+The UI is currently English only. Every string goes through `String(localized:)` or
+`LocalizedStringKey`, so adding a String Catalog is a small, self-contained change.
+
+## Caveats
+
+- **Shut the machine down first.** Not paused, not suspended — off.
+- Snapshots are not backups. They live inside the same disk image; if that file is lost, so
+  are they.
+- Live snapshots (including memory state) are out of scope. That needs QEMU's monitor, not
+  `qemu-img`.
+
+## License
+
+Apache 2.0, same as the original project.

@@ -26,8 +26,11 @@ final class AppModel: ObservableObject {
     @Published var awaitingPermission = false
     /// Standard folders macOS is currently blocking.
     @Published var restrictedFolders: [String] = []
+    /// The last scan ran out of time and was discarded to keep the list intact.
+    @Published var scanWasIncomplete = false
 
     private var hasLoadedOnce = false
+    private var isRefreshing = false
     private let welcomeKey = "hasSeenWelcome"
 
     var selected: VirtualMachine? {
@@ -71,15 +74,35 @@ final class AppModel: ObservableObject {
 
     func refresh() async {
         guard let qemuImg = qemuImgPath else { return }
+        // One scan at a time. Two overlapping scans used to race, and whichever
+        // finished last won - including a scan that had been cut short.
+        guard !isRefreshing else { return }
+        isRefreshing = true
         isScanning = true
+        defer {
+            isRefreshing = false
+            isScanning = false
+        }
+
         let result = await VMDiscovery.scan(qemuImg: qemuImg)
+
+        // A cut-short scan must never wipe a list that was already good.
+        // Spotlight is empty on many Macs, so the folder walk is the only
+        // source; if it hits its deadline the result says "nothing found"
+        // even though the machines are still right there on disk.
+        if result.machines.isEmpty && !machines.isEmpty && result.awaitingPermission {
+            awaitingPermission = false
+            scanWasIncomplete = true
+            return
+        }
+
+        scanWasIncomplete = false
         machines = result.machines
         awaitingPermission = result.awaitingPermission
         restrictedFolders = result.restrictedFolders
-        if selectedID == nil || !machines.contains(where: { $0.id == selectedID }) {
-            selectedID = machines.first?.id
-        }
-        isScanning = false
+
+        if let selectedID, machines.contains(where: { $0.id == selectedID }) { return }
+        selectedID = machines.first?.id
     }
 
     // MARK: - Actions

@@ -6,6 +6,14 @@ struct SidebarView: View {
     var body: some View {
         List(selection: $model.selectedID) {
             Section("Virtual Machines") {
+                // An empty sidebar with no explanation is the worst possible
+                // state: it looks like the app lost the machines.
+                if model.machines.isEmpty {
+                    Text(model.isScanning ? "Searching…" : "No machines found")
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+                        .padding(.vertical, 6)
+                }
                 ForEach(model.machines) { vm in
                     SidebarRow(vm: vm, showsLocation: model.ambiguousNames.contains(vm.name))
                         .tag(vm.id)
@@ -36,6 +44,11 @@ struct SidebarView: View {
             if model.isScanning {
                 ProgressView().controlSize(.small)
                 Text("Searching…")
+            } else if model.scanWasIncomplete {
+                Image(systemName: "clock.badge.exclamationmark")
+                    .foregroundStyle(.orange)
+                Text("Last search timed out — list kept")
+                    .lineLimit(1)
             } else {
                 Image(systemName: "checkmark.seal")
                     .foregroundStyle(.secondary)
@@ -77,7 +90,12 @@ struct SidebarRow: View {
 
             Spacer(minLength: 4)
 
-            if vm.isRunning {
+            if !vm.hasAccess {
+                Image(systemName: "lock.fill")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .help("UTM Snapshot Manager cannot read this folder yet")
+            } else if vm.isRunning {
                 StatusDot(color: .green, label: "Running")
             } else if vm.isSuspended {
                 StatusDot(color: .orange, label: "Suspended")
@@ -87,6 +105,7 @@ struct SidebarRow: View {
     }
 
     private var subtitle: String {
+        if !vm.hasAccess { return String(localized: "No access - permission needed") }
         if showsLocation { return vm.locationDescription }
         if vm.backend == .apple { return String(localized: "Apple Virtualization") }
         if vm.disks.isEmpty { return String(localized: "No supported disk") }

@@ -45,6 +45,10 @@ blue "Generating Xcode project…"
 xcodegen generate --quiet
 
 blue "Building…"
+# The exit status of xcodebuild, not of the grep it is piped into. Without this
+# a failed compile would leave the previous build in place and get installed as
+# if nothing had happened.
+set -o pipefail
 xcodebuild \
   -project "$APP_NAME.xcodeproj" \
   -scheme "$APP_NAME" \
@@ -53,7 +57,10 @@ xcodebuild \
   CODE_SIGN_IDENTITY=- \
   CODE_SIGN_STYLE=Manual \
   DEVELOPMENT_TEAM= \
-  build | grep -E "(error|warning: .*deprecat|BUILD)" || true
+  build 2>&1 | grep -E "(error:|BUILD)" || {
+    [ "${PIPESTATUS[0]}" -eq 0 ] || fail "Build failed — nothing was installed."
+  }
+[ "${PIPESTATUS[0]}" -eq 0 ] || fail "Build failed — nothing was installed."
 
 PRODUCT="$BUILD_DIR/Build/Products/Release/$APP_NAME.app"
 [ -d "$PRODUCT" ] || fail "Build failed — no app bundle was produced."

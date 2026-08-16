@@ -9,9 +9,9 @@ import Foundation
 enum VMDiscovery {
 
     private static let suspendTag = "suspend"
-    private static let spotlightTimeout: Double = 5
-    private static let walkTimeout: Double = 6
-    private static let diskListTimeout: Double = 5
+    private static let spotlightTimeout: Double = 8
+    private static let walkTimeout: Double = 20
+    private static let diskListTimeout: Double = 8
 
     struct ScanResult: Sendable {
         var machines: [VirtualMachine]

@@ -8,6 +8,8 @@ underneath it *does* support snapshots on `qcow2` disks, it just has no face. Th
 that face: it finds your machines by itself, shows their restore points on a timeline, and
 refuses to do anything dangerous behind your back.
 
+![UTM Snapshot Manager](Screenshots/main-window.png)
+
 ## Install
 
 ```sh
@@ -100,6 +102,14 @@ The UI is currently English only. Every string goes through `String(localized:)`
 ## Caveats
 
 - **Shut the machine down first.** Not paused, not suspended — off.
+- The app is ad-hoc signed, so its signature changes with every build. macOS ties
+  folder permissions to that signature, which means it asks for access to your
+  Documents folder again after each rebuild. Answering "Allow" once per build is
+  enough; if you dismissed it, the app tells you and links to the right settings
+  pane.
+- Spotlight does not index `.utm` bundles on every Mac. When it comes back empty
+  the folder scan is the only source, which is why that scan is generous with its
+  deadline and why a timed-out scan keeps the previous list instead of clearing it.
 - Snapshots are not backups. They live inside the same disk image; if that file is lost, so
   are they.
 - Live snapshots (including memory state) are out of scope. That needs QEMU's monitor, not

@@ -14,6 +14,11 @@ struct Snapshot: Identifiable, Hashable, Sendable {
     var id: String { name }
 
     var relativeDate: String {
+        // A snapshot taken a moment ago would otherwise read "in 0 seconds",
+        // because the rounding can land just on the future side of now.
+        let age = Date().timeIntervalSince(date)
+        if age < 60 { return String(localized: "Just now") }
+
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full
         formatter.locale = Locale.current

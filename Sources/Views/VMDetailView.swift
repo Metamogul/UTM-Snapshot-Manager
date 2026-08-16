@@ -95,7 +95,7 @@ struct VMDetailView: View {
                 }
             }
             .listStyle(.inset)
-            .alternatingRowBackgrounds()
+            .scrollContentBackground(.hidden)
         }
     }
 

@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// One-time greeting on first launch. Explains the app in three sentences
-/// and then stays out of the way forever.
+/// One-time greeting on first launch. Explains the app in three sentences and
+/// then stays out of the way forever.
 struct WelcomeView: View {
     @Environment(\.dismiss) private var dismiss
 
@@ -25,23 +25,27 @@ struct WelcomeView: View {
                 WelcomePoint(
                     symbol: "magnifyingglass",
                     title: "Nothing to set up",
-                    detail: "Your virtual machines are found automatically, no matter which folder they live in."
+                    // Says what is actually searched. The previous wording
+                    // promised "no matter which folder" while the scan
+                    // deliberately skips several of them — a safety-critical
+                    // app that oversells itself is hard to trust elsewhere.
+                    detail: "Your machines are found automatically in UTM's own folder, Documents, Downloads and the Desktop."
                 )
                 WelcomePoint(
-                    symbol: "camera.aperture",
-                    title: "Save before you break things",
-                    detail: "One click freezes the current state of the disk before you try something risky."
+                    symbol: "flag.fill",
+                    title: "Pick a baseline, return to it in one step",
+                    detail: "Mark the state you want back — a clean install, a prepared lab — and reset to it whenever you need, shutdown and restart included."
                 )
                 WelcomePoint(
-                    symbol: "clock.arrow.circlepath",
-                    title: "Go back any time",
-                    detail: "If things go wrong, restoring the saved state takes seconds."
+                    symbol: "lock.shield",
+                    title: "It refuses when it isn't sure",
+                    detail: "Changes are only ever written to a machine UTM confirms is shut down. If that cannot be confirmed, nothing happens."
                 )
             }
             .padding(.vertical, 28)
             .padding(.horizontal, 8)
 
-            Text("Snapshots only work while a machine is shut down. This app keeps an eye on that and tells you when it isn't.")
+            Text("Snapshots need the machine shut down — not paused, not suspended. This app checks with UTM every few seconds and shows you the state at all times.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -50,11 +54,11 @@ struct WelcomeView: View {
 
             Button("Get Started") { dismiss() }
                 .keyboardShortcut(.defaultAction)
-                .buttonStyle(.borderedProminent)
+                .primaryActionStyle()
                 .controlSize(.large)
         }
         .padding(32)
-        .frame(width: 480)
+        .frame(width: 500)
     }
 }
 
@@ -66,10 +70,10 @@ private struct WelcomePoint: View {
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
             Image(systemName: symbol)
-                .font(.system(size: 22))
+                .font(.system(size: 20))
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.tint)
-                .frame(width: 32)
+                .frame(width: 30)
             VStack(alignment: .leading, spacing: 2) {
                 Text(title).font(.headline)
                 Text(detail)

@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install prerequisites
+        run: brew install xcodegen qemu
+
+      - name: Run integration tests
+        run: Scripts/run-tests.sh
+
+      - name: Build app
+        run: Scripts/build-app.sh
+
+      - name: Package disk image
+        run: Scripts/make-dmg.sh
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: UTM-Snapshot-Manager
+          path: |
+            dist/*.dmg
+            dist/*.sha256
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.dmg
+            dist/*.sha256
+          body: |
+            ## Install
+
+            1. Download the `.dmg` below and open it.
+            2. Drag **UTM Snapshot Manager** onto Applications.
+            3. Right-click the app once and choose **Open** — the build is
+               signed ad-hoc rather than with a paid Apple Developer ID, so the
+               first launch needs that confirmation.
+
+            Requires macOS 14 or newer, plus QEMU (`brew install qemu`).
+            UTM itself is optional: without it snapshots still work, but
+            starting and stopping machines from the app does not.

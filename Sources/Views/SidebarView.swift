@@ -4,22 +4,21 @@ struct SidebarView: View {
     @EnvironmentObject private var model: AppModel
 
     var body: some View {
-        List(selection: $model.selectedID) {
+        List(selection: $model.selectedMachineID) {
             Section("Virtual Machines") {
                 // An empty sidebar with no explanation is the worst possible
                 // state: it looks like the app lost the machines.
                 if model.machines.isEmpty {
-                    Text(model.isScanning ? "Searching…" : "No machines found")
+                    Text(emptyLabel)
                         .font(.callout)
                         .foregroundStyle(.secondary)
                         .padding(.vertical, 6)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 ForEach(model.machines) { vm in
                     SidebarRow(vm: vm, showsLocation: model.ambiguousNames.contains(vm.name))
                         .tag(vm.id)
-                        .contextMenu {
-                            Button("Show in Finder") { model.revealInFinder(vm) }
-                        }
+                        .contextMenu { contextMenu(for: vm) }
                 }
             }
         }
@@ -30,18 +29,46 @@ struct SidebarView: View {
                 Button {
                     Task { await model.refresh() }
                 } label: {
-                    Label("Search Again", systemImage: "arrow.clockwise")
+                    Label("Rescan", systemImage: "arrow.clockwise")
                 }
-                .help("Look for virtual machines (⌘R)")
-                .disabled(model.isScanning)
+                .help("Search for virtual machines again (⌘R)")
+                .disabled(model.isScanning || model.activity != nil)
             }
         }
         .safeAreaInset(edge: .bottom) { footer }
     }
 
+    @ViewBuilder
+    private func contextMenu(for vm: VirtualMachine) -> some View {
+        if vm.canStart {
+            Button("Start") { Task { await model.start(vm) } }
+        }
+        if vm.canStop {
+            Button("Shut Down") { Task { await model.stop(vm, method: .request) } }
+        }
+        Divider()
+        Button("Show in Finder") { model.revealInFinder(vm) }
+        if UTMControl.isInstalled {
+            Button("Open in UTM") { model.openUTM() }
+        }
+    }
+
+    /// Says which of the three it is, because "Searching…" forever is how a
+    /// waiting permission dialog looks from the inside.
+    private var emptyLabel: LocalizedStringKey {
+        if model.permissionPending { return "Waiting for your answer to macOS's permission dialog…" }
+        if model.isScanning { return "Searching…" }
+        return "No machines found"
+    }
+
     private var footer: some View {
         HStack(spacing: 6) {
-            if model.isScanning {
+            if model.permissionPending {
+                Image(systemName: "hand.raised.fill")
+                    .foregroundStyle(.orange)
+                Text("Permission dialog open")
+                    .lineLimit(1)
+            } else if model.isScanning {
                 ProgressView().controlSize(.small)
                 Text("Searching…")
             } else if model.scanWasIncomplete {
@@ -62,7 +89,7 @@ struct SidebarView: View {
         .foregroundStyle(.secondary)
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
-        .help("UTM Snapshot Manager uses qemu-img for every operation.")
+        .help("Every snapshot operation runs through qemu-img.")
     }
 }
 
@@ -73,10 +100,10 @@ struct SidebarRow: View {
     var body: some View {
         HStack(spacing: 10) {
             Image(systemName: vm.symbolName)
-                .font(.system(size: 16))
+                .font(.system(size: 15))
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.tint)
-                .frame(width: 22)
+                .frame(width: 20)
 
             VStack(alignment: .leading, spacing: 1) {
                 Text(vm.name)
@@ -85,47 +112,31 @@ struct SidebarRow: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
-                    .truncationMode(.head)
+                    // Head truncation on a path keeps the folder that actually
+                    // distinguishes two machines with the same name.
+                    .truncationMode(showsLocation ? .head : .tail)
             }
 
             Spacer(minLength: 4)
 
-            if !vm.hasAccess {
-                Image(systemName: "lock.fill")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                    .help("UTM Snapshot Manager cannot read this folder yet")
-            } else if vm.isRunning {
-                StatusDot(color: .green, label: "Running")
-            } else if vm.isSuspended {
-                StatusDot(color: .orange, label: "Suspended")
+            if vm.state != .stopped {
+                StateChip(state: vm.state, compact: true)
             }
         }
         .padding(.vertical, 3)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(vm.name), \(vm.state.label), \(subtitle)")
     }
 
     private var subtitle: String {
-        if !vm.hasAccess { return String(localized: "No access - permission needed") }
+        if !vm.hasAccess { return String(localized: "No access — permission needed") }
         if showsLocation { return vm.locationDescription }
         if vm.backend == .apple { return String(localized: "Apple Virtualization") }
         if vm.disks.isEmpty { return String(localized: "No supported disk") }
         switch vm.snapshots.count {
-        case 0: return String(localized: "No snapshots")
-        case 1: return String(localized: "1 snapshot")
-        default: return String(localized: "\(vm.snapshots.count) snapshots")
+        case 0: return String(localized: "No restore points")
+        case 1: return String(localized: "1 restore point")
+        default: return String(localized: "\(vm.snapshots.count) restore points")
         }
-    }
-}
-
-struct StatusDot: View {
-    let color: Color
-    let label: LocalizedStringKey
-
-    var body: some View {
-        Circle()
-            .fill(color)
-            .frame(width: 7, height: 7)
-            .help(label)
-            .accessibilityLabel(Text(label))
     }
 }

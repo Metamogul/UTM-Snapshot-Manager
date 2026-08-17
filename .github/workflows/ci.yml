@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Integration tests
+    # The app builds against the macOS 26 SDK: Design.swift references the
+    # Liquid Glass APIs behind an availability check, and the *symbols* still
+    # have to exist at compile time. An older image fails to build.
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          sw_vers
+          xcodebuild -version
+          xcrun --show-sdk-version --sdk macosx
+
+      - name: Install QEMU
+        run: brew install qemu
+
+      # Exercises the real write paths against real qcow2 images in a temporary
+      # directory — creating, restoring, deleting, the multi-disk rollback and
+      # every refusal the app is supposed to make. No VM and no user data is
+      # involved, so this is safe on a shared runner.
+      - name: Run integration tests
+        run: Scripts/run-tests.sh
+
+  build:
+    name: Build app
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      # Catches anything the test job cannot: it compiles only the service and
+      # model layer, so a broken view or a missing SDK symbol would slip past.
+      - name: Build (universal, Release)
+        run: Scripts/build-app.sh
+
+      - name: Verify the bundle
+        run: |
+          APP="build/Build/Products/Release/UTM Snapshot Manager.app"
+          test -d "$APP"
+          lipo -archs "$APP/Contents/MacOS/UTM Snapshot Manager" | tee /dev/stderr | grep -q x86_64
+          lipo -archs "$APP/Contents/MacOS/UTM Snapshot Manager" | grep -q arm64
+          codesign --verify --verbose=1 "$APP"
+          /usr/libexec/PlistBuddy -c 'Print :NSAppleEventsUsageDescription' "$APP/Contents/Info.plist"

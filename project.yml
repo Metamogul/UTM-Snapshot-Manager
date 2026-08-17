@@ -9,7 +9,7 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.0"
-    MARKETING_VERSION: "2.0"
+    MARKETING_VERSION: "2.1.0"
     CURRENT_PROJECT_VERSION: "1"
     CODE_SIGN_IDENTITY: "-"
     CODE_SIGN_STYLE: Manual
@@ -39,3 +39,6 @@ targets:
         INFOPLIST_KEY_NSDocumentsFolderUsageDescription: "So your UTM virtual machines can be found automatically."
         INFOPLIST_KEY_NSDownloadsFolderUsageDescription: "So your UTM virtual machines can be found automatically."
         INFOPLIST_KEY_NSDesktopFolderUsageDescription: "So your UTM virtual machines can be found automatically."
+        # Required to ask UTM whether a machine is running. Without this the app
+        # cannot tell running from paused and refuses to write to any disk.
+        INFOPLIST_KEY_NSAppleEventsUsageDescription: "So UTM Snapshot Manager can check whether a machine is shut down before changing its disk, and start or stop it on your behalf."

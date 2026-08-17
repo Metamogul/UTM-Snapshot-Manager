@@ -12,3 +12,4 @@ Resources/Assets.xcassets/
 
 # macOS
 .DS_Store
+dist/
